@@ -10,15 +10,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
+import java.awt.Color;
 
 public class Menu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String[] levels = {"Nivel 1", "Nivel 2", "Nivel 3"};
-	private JTextField txtName;
+	
+	private static Menu menu;
 
 	/**
 	 * Launch the application.
@@ -27,8 +31,9 @@ public class Menu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Menu frame = new Menu();
-					frame.setVisible(true);
+					menu = new Menu();
+					menu.setVisible(true);
+					menu.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,15 +52,7 @@ public class Menu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnPlay = new JButton("Jogar");
-		btnPlay.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnPlay.setBounds(161, 209, 117, 25);
-		contentPane.add(btnPlay);
-		
-		JComboBox cbLevel = new JComboBox(levels);
+		JComboBox<Object> cbLevel = new JComboBox<Object>(levels);
 		cbLevel.setBounds(125, 143, 198, 24);
 		cbLevel.setSelectedIndex(0);
 		contentPane.add(cbLevel);
@@ -65,16 +62,34 @@ public class Menu extends JFrame {
 		lblSi.setBounds(125, 27, 212, 25);
 		contentPane.add(lblSi);
 		
-		txtName = new JTextField();
+	    JTextField txtName = new JTextField();
+		txtName.setBackground(Color.WHITE);
 		txtName.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtName.setToolTipText("Seu nome");
 		txtName.setBounds(135, 106, 168, 25);
 		contentPane.add(txtName);
 		txtName.setColumns(10);
+		txtName.setFocusable(true);
 		
 		JLabel lblDigiteSeuNome = new JLabel("Digite seu nome");
 		lblDigiteSeuNome.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblDigiteSeuNome.setBounds(147, 75, 166, 30);
 		contentPane.add(lblDigiteSeuNome);
+		JButton btnPlay = new JButton("Jogar");
+		
+		btnPlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(txtName.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Insira seu nome!", "", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				menu.setVisible(false);
+				Jogo jogo = new Jogo(txtName.getText(), cbLevel.getSelectedIndex());
+				jogo.setLocationRelativeTo(null);
+				jogo.setVisible(true);
+			}
+		});
+		btnPlay.setBounds(161, 209, 117, 25);
+		contentPane.add(btnPlay);
 	}
 }

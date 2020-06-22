@@ -1,8 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,28 +11,27 @@ import java.awt.event.ActionEvent;
 
 public class Jogo extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Jogo frame = new Jogo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Jogo frame = new Jogo();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Jogo() {
+	public Jogo(String user, int nivel) {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -43,12 +39,12 @@ public class Jogo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNivel = new JLabel("Nivel: 1");
+		JLabel lblNivel = new JLabel("Nivel: " + (nivel + 1));
 		lblNivel.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblNivel.setBounds(29, 12, 70, 15);
 		contentPane.add(lblNivel);
 		
-		JLabel lblJogadorDelamaro = new JLabel("Jogador: Delamaro");
+		JLabel lblJogadorDelamaro = new JLabel("Jogador: " + user);
 		lblJogadorDelamaro.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblJogadorDelamaro.setBounds(248, 5, 163, 28);
 		contentPane.add(lblJogadorDelamaro);
