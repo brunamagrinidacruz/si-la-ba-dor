@@ -1,8 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,31 +15,30 @@ import java.awt.Color;
 
 public class Jogo extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Jogo frame = new Jogo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Jogo frame = new Jogo();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Jogo() {
-		JLabel background;
+
+	public Jogo(String user, int nivel) {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setBounds(100, 100, 479, 319);
+		JLabel background;
 		setSize(1280, 720);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -51,17 +47,16 @@ public class Jogo extends JFrame {
 		contentPane.setLayout(null);
 		ImageIcon img = new ImageIcon("background_silabador.png");
 		
-		JLabel lblNivel = new JLabel("Nível: 1");
+		JLabel lblNivel = new JLabel("Nivel: " + (nivel + 1));
 		lblNivel.setForeground(new Color(0, 0, 128));
 		lblNivel.setFont(new Font("Cooper Black", Font.PLAIN, 20));
 		lblNivel.setBounds(29, 8, 113, 40);
 		contentPane.add(lblNivel);
 		
-		JLabel lblJogadorDelamaro = new JLabel("Acerte a palavra, Delamaro!");
+		JLabel lblJogadorDelamaro = new JLabel("Jogador: " + user);
 		lblJogadorDelamaro.setForeground(new Color(0, 0, 128));
 		lblJogadorDelamaro.setFont(new Font("Cooper Black", Font.PLAIN, 50));
-		lblJogadorDelamaro.setBounds(277, 72, 747, 71);
-		contentPane.add(lblJogadorDelamaro);
+		lblJogadorDelamaro.setBounds(277, 72, 747, 71);ntentPane.add(lblJogadorDelamaro);
 		
 		JButton btnPro = new JButton("PRO");
 		btnPro.addActionListener(new ActionListener() {
@@ -74,7 +69,7 @@ public class Jogo extends JFrame {
 		btnPro.setBounds(178, 199, 141, 89);
 		contentPane.add(btnPro);
 		
-		JButton btnBa_1 = new JButton("ÇÃO");
+		JButton btnBa_1 = new JButton("ï¿½ï¿½O");
 		btnBa_1.setBackground(new Color(0, 0, 128));
 		btnBa_1.setForeground(new Color(255, 204, 102));
 		btnBa_1.addActionListener(new ActionListener() {
