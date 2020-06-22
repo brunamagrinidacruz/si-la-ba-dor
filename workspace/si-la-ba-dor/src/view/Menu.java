@@ -84,7 +84,7 @@ public class Menu extends JFrame {
 					return;
 				}
 				menu.setVisible(false);
-				Jogo jogo = new Jogo(txtName.getText(), cbLevel.getSelectedIndex());
+				Jogo jogo = new Jogo(menu, txtName.getText(), cbLevel.getSelectedIndex());
 				jogo.setLocationRelativeTo(null);
 				jogo.setVisible(true);
 			}
