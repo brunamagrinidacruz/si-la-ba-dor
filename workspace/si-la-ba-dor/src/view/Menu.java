@@ -54,7 +54,7 @@ public class Menu extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		ImageIcon img = new ImageIcon("background_menu_silabador.png");
+		ImageIcon img = new ImageIcon("assets/background_menu_silabador.png");
 
 		JComboBox<Object> cbLevel = new JComboBox<Object>(levels);
 		cbLevel.setForeground(new Color(0, 0, 128));
@@ -84,11 +84,6 @@ public class Menu extends JFrame {
 		lblDigiteSeuNome.setFont(new Font("Cooper Black", Font.BOLD, 30));
 		lblDigiteSeuNome.setBounds(253, 277, 350, 66);
 		contentPane.add(lblDigiteSeuNome);
-
-		background = new JLabel("", img,JLabel.CENTER);
-		background.setBackground(new Color(51, 204, 204));
-		background.setBounds(0, 0, 1262, 673);
-		getContentPane().add(background);
 		
 		JLabel lblBemVindo = new JLabel("Seja bem-vindo(a)!");
 		lblBemVindo.setForeground(new Color(0, 0, 128));
@@ -113,6 +108,11 @@ public class Menu extends JFrame {
 		});
 		btnPlay.setBounds(606, 539, 194, 66);
 		contentPane.add(btnPlay);
+		
+				background = new JLabel("", img,JLabel.CENTER);
+				background.setBackground(new Color(51, 204, 204));
+				background.setBounds(0, 0, 1262, 673);
+				getContentPane().add(background);
 
 	}
 }

@@ -34,11 +34,7 @@ public class Jogo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		ImageIcon img = new ImageIcon("background_silabador.png");
-		background = new JLabel("", img,JLabel.CENTER);
-		background.setBackground(new Color(51, 204, 204));
-		background.setBounds(0, 0, 1262, 673);
-		getContentPane().add(background);
+		ImageIcon img = new ImageIcon("assets/background_silabador.png");
 
 		
 		JLabel lblNivel = new JLabel("Nivel: " + (nivel + 1));
@@ -75,6 +71,10 @@ public class Jogo extends JFrame {
 		btnSilaba.setFont(new Font("Cooper Black", Font.PLAIN, 40));
 		btnSilaba.setBounds(178, 199, 141, 89);
 		contentPane.add(btnSilaba);				
+		background = new JLabel("", img,JLabel.CENTER);
+		background.setBackground(new Color(51, 204, 204));
+		background.setBounds(0, 0, 1262, 673);
+		getContentPane().add(background);
 	}
 	
 	private void adicionarSilaba(String silaba) {
