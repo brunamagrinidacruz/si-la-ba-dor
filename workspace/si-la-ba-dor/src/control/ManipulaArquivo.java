@@ -1,6 +1,9 @@
-package model;
+package control;
+
 import java.io.*;
-import java.util.*;  
+import model.*;
+import java.util.LinkedList;
+import java.util.Queue;  
 
 public class ManipulaArquivo {
 		
