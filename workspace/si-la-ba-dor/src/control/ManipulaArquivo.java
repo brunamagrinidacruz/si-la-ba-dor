@@ -11,14 +11,14 @@ public class ManipulaArquivo {
 		
 	static int indices[];   // Armazena os índices de busca, referente a cada número de sílabas.
 	static int numPalavras; // Armazena o número de palavras salvas no arquivo.
-	static int dificuldade;
+	static Niveis dificuldade;
 	static String nomeArquivo;
 	// Fila para armazenar as últimas quatro palavras escolhidas, utilizada para impedir repetições.
 	private Queue<Integer> cache = new LinkedList<Integer>(); 
 	
 	private Random r;
 	
-	public ManipulaArquivo(int nivel)
+	public ManipulaArquivo(Niveis nivel)
 	{
 		File dados;
 		dificuldade = nivel;
@@ -31,15 +31,15 @@ public class ManipulaArquivo {
 		 */
 		switch(nivel) 
 		{
-			case 1:
+			case NIVEL1:
 				nomeArquivo = "nivel1.txt";
 				indices = new int[2];
 				break;
-			case 2:
+			case NIVEL2:
 				nomeArquivo = "nivel2.txt";
 				indices = new int[3];
 				break;
-			case 3:
+			case NIVEL3:
 				nomeArquivo = "nivel3.txt";
 				indices = new int[3];
 				break;
@@ -102,15 +102,15 @@ public class ManipulaArquivo {
 		// A condicional abaixo altera o número de sílabas, para a variável para acessar o vetor "indices".
 		switch(dificuldade)
 		{
-			case 1:
+			case NIVEL1:
 				silabas -= 2;
 				tamanhoCabecalho = 3;
 				break;
-			case 2:
+			case NIVEL2:
 				silabas -= 2;
 				tamanhoCabecalho = 4;
 				break;
-			case 3:
+			case NIVEL3:
 				silabas -= 5;
 				tamanhoCabecalho = 4;
 				break;
