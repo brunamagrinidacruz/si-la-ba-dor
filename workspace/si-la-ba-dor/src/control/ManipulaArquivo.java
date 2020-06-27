@@ -1,9 +1,11 @@
 package control;
 import java.io.*;
-import java.util.*;
 
 import model.Random;
 import model.Palavra;  
+
+import java.util.LinkedList;
+import java.util.Queue;  
 
 public class ManipulaArquivo {
 		
