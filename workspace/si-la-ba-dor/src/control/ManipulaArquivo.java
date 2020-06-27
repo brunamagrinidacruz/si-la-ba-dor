@@ -1,6 +1,9 @@
-package model;
+package control;
 import java.io.*;
-import java.util.*;  
+import java.util.*;
+
+import model.Random;
+import model.Palavra;  
 
 public class ManipulaArquivo {
 		
