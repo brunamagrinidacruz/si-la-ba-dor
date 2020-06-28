@@ -4,7 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import control.ManipulaArquivo;
 import control.Niveis;
+import model.Palavra;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -25,6 +27,10 @@ public class Jogo extends JFrame {
 	private int xProximaBarra = 65;
 	
 	public Jogo(JFrame menu, String user, Niveis nivel) {
+		ManipulaArquivo manipulaArquivo = new ManipulaArquivo(nivel);
+		Palavra palavra = manipulaArquivo.recebePalavra();
+		System.out.println(palavra);
+				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 363);	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -80,12 +80,34 @@ public class ManipulaArquivo {
 		cache.add(linha);
 	}
 	
-	public Palavra recebePalavra(int silabas)
+	public Palavra recebePalavra()
 	{
 		/*
-		 * 		Método que, dado um número de sílabas, percorre o arquivo, e escolhe uma palavra aleatória
-		 * 	da quantidade de sílabas fornecida.
+		 * 		Método que seleciona um número aleatório de silabas com base no nível e 
+		 *  percorre o arquivo, e escolhe uma palavra aleatória com a quantidade de sílabas.
 		 */
+		int silabas;
+		switch(dificuldade) 
+		{
+			case NIVEL1:
+				/*!< getIndRand irá retornar valores entre [0, 1] então ao somar 2, os valores irão variar entre [2, 3] */
+				silabas = r.getIntRand(2) + 2;
+				System.out.println(silabas);
+				break;
+			case NIVEL2:
+				/*!< getIndRand irá retornar valores entre [0, 2] então ao somar 2, os valores irão variar entre [2, 4] */
+				silabas = r.getIntRand(3) + 2;
+				break;
+			case NIVEL3:
+				/*!< getIndRand irá retornar valores entre [0, 2] então ao somar 5, os valores irão variar entre [5, 7] */
+				silabas = r.getIntRand(3) + 5;
+				break;
+			default:
+				silabas = 0;
+				break;
+		}
+		
+		System.out.println(silabas);
 		
 		if(nomeArquivo == null) return null;
 		
