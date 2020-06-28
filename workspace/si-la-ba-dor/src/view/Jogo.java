@@ -27,8 +27,14 @@ public class Jogo extends JFrame {
 	private Niveis nivel;
 	private Palavra palavra;
 	
+	/*!< Representa as silabas na tela */
+	JLabel silabasNaTela[];
+	/*!< Representa o número de silabas que a pessoa colocou na tela. Este valor não pode ultrapassar o número de silabas da palavra */
+	private int numeroSilabasNaTela = 0; 
+	
 	private final int ESPACAMENTO = 200;
 
+	private int xProximoBotao = 100;
 	private int xProximaSilaba = 67;
 	private int xProximaBarra = 65;
 	
@@ -38,7 +44,7 @@ public class Jogo extends JFrame {
 		
 		ManipulaArquivo manipulaArquivo = new ManipulaArquivo(nivel);
 		this.palavra = manipulaArquivo.recebePalavra();
-		inicializarPalavraNaTela();
+		inicializarSilabas();
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 363);	
@@ -76,65 +82,89 @@ public class Jogo extends JFrame {
 		btnVoltar.setBounds(1013, 17, 94, 24);
 		contentPane.add(btnVoltar);
 		
-		JButton btnSilaba = new JButton("PRO");
-		
-		btnSilaba.setBackground(new Color(0, 0, 128));
-		btnSilaba.setForeground(new Color(255, 204, 102));
-		btnSilaba.setFont(new Font("Cooper Black", Font.PLAIN, 40));
-		btnSilaba.setBounds(178, 199, 141, 89);
-		contentPane.add(btnSilaba);
-		
-		btnSilaba.addActionListener(new ActionListener() {
+		JButton btnLimparSilabas = new JButton("Limpar sílabas");
+		btnLimparSilabas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				selecionarSilaba(btnSilaba.getText());
+				for(int i = 0; i < numeroSilabasNaTela; i++) {
+					/*!< Removendo silabas da tela e do vetor */
+					contentPane.remove(silabasNaTela[i]);
+					silabasNaTela[i] = null;
+				}
+				/*!< Voltando x ao x inicial das silabas na tela */
+				xProximaSilaba = 67;
+				numeroSilabasNaTela = 0;
 				repaint();
 			}
 		});
+		btnLimparSilabas.setBounds(921, 608, 220, 25);
+		contentPane.add(btnLimparSilabas);
+	
 	}
 	
+	/**
+	 * Cria os botões com as sílabas e coloca na tela.
+	 * Cria os campos de preenchimento para o usuário colocar as sílabas.
+	 * */
+	private void inicializarSilabas() {
+		/*!< Inicializando o vetor que irá armazenar as silabas que estão na tela com o tamanho da silaba correta */
+		silabasNaTela = new JLabel[palavra.getNumSilabas()];
+		
+		/*!< Criando os botões de sílabas */
+		for(int i = 0; i < palavra.getNumTotalSilabas(); i++) {
+			JButton btnSilaba = new JButton(palavra.getSilabasCompleto()[i]);
+			
+			btnSilaba.setBackground(new Color(0, 0, 128));
+			btnSilaba.setForeground(new Color(255, 204, 102));
+			btnSilaba.setFont(new Font("Cooper Black", Font.PLAIN, 40));
+			btnSilaba.setBounds(xProximoBotao, 199, 141, 89);
+			contentPane.add(btnSilaba);
+
+			btnSilaba.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(numeroSilabasNaTela < palavra.getNumSilabas()) {
+						adicionarSilaba(btnSilaba.getText());
+						colocarSilabasNaTela();
+					} else {
+						System.out.println("Você colocou o número máximo de sílabas.");
+					}
+				}
+			});
+			
+			xProximoBotao += 150;
+		}
+		
+		/*!< Criando os campos de preenchimento */
+		for(int i = 0; i < palavra.getNumSilabas(); i++) {
+			JLabel lblBarra = new JLabel();
+			lblBarra.setText("________");			
+			lblBarra.setForeground(Color.BLACK);
+			lblBarra.setFont(new Font("Dialog", Font.PLAIN, 25));
+			lblBarra.setBounds(xProximaBarra, 550, 997, 141);
+			contentPane.add(lblBarra);
+			this.xProximaBarra = this.xProximaBarra + ESPACAMENTO;
+		}
+		
+		repaint();
+	}
+	
+	/**
+	 * Adiciona uma silaba selecionada pelo botão na tela.
+	 * Armazena e contabiliza as silabas adiciondas na tela. 
+	 **/
 	private void adicionarSilaba(String silaba) {
 		JLabel lblSilaba = new JLabel(silaba);
 		lblSilaba.setForeground(Color.ORANGE);
 		lblSilaba.setFont(new Font("Cooper Black", Font.PLAIN, 32));
 		lblSilaba.setBounds(xProximaSilaba+7, 586, 348, 55);
-		contentPane.add(lblSilaba);
+		silabasNaTela[numeroSilabasNaTela] = lblSilaba;
+		numeroSilabasNaTela++;
 		this.xProximaSilaba = this.xProximaSilaba + ESPACAMENTO;
 	}
 	
-	private void adicionarBarra(int quantidadeDeLetras) {
-		JLabel lblBarra = new JLabel();
-		switch(quantidadeDeLetras) {
-			case 1:
-				lblBarra.setText("__");
-				break;
-			case 2:
-				lblBarra.setText("____");
-				break;
-			case 3:
-				lblBarra.setText("______");
-				break;
-			default:
-				lblBarra.setText("________");
-		}
-		
-		lblBarra.setForeground(Color.BLACK);
-		lblBarra.setFont(new Font("Dialog", Font.PLAIN, 25));
-		lblBarra.setBounds(xProximaBarra, 550, 997, 141);
-		contentPane.add(lblBarra);
-		this.xProximaBarra = this.xProximaBarra + ESPACAMENTO;
+	private void colocarSilabasNaTela() {
+		for(int i = 0; i < numeroSilabasNaTela; i++) 
+			contentPane.add(silabasNaTela[i]);
+		repaint();
 	}
 	
-	private void selecionarSilaba(String texto) {
-		adicionarSilaba(texto);
-		adicionarBarra(texto.length());
-	}
-	
-	/**
-	 * Função responsável por inicializar a palavra na tela. 
-	 * Cria os botões com as sílabas.
-	 * Cria os campos de preenchimento para o usuário colocar as sílabas.
-	 * */
-	private void inicializarPalavraNaTela() {
-		System.out.println(palavra);
-	}
 }

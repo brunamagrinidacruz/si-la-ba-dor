@@ -102,7 +102,7 @@ public class Palavra {
 				}
 			
 			}
-			
+					
 		}else
 		{
 			silabasPalavra = null;
