@@ -92,7 +92,6 @@ public class ManipulaArquivo {
 			case NIVEL1:
 				/*!< getIndRand irá retornar valores entre [0, 1] então ao somar 2, os valores irão variar entre [2, 3] */
 				silabas = r.getIntRand(2) + 2;
-				System.out.println(silabas);
 				break;
 			case NIVEL2:
 				/*!< getIndRand irá retornar valores entre [0, 2] então ao somar 2, os valores irão variar entre [2, 4] */
@@ -106,8 +105,6 @@ public class ManipulaArquivo {
 				silabas = 0;
 				break;
 		}
-		
-		System.out.println(silabas);
 		
 		if(nomeArquivo == null) return null;
 		

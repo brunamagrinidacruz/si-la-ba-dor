@@ -9,8 +9,10 @@ public class Palavra {
 	String   silabasConcatenadas; // Armazena as silabas da palavra concatenadas, ou seja, a palavra.
 	String[] silabasPalavra;    // Armazenará, em ordem, as silabas que constituem as palavras.
 	int numSilabas;   		    // Armazenará o número de sílabas.
+	int numTotalSilabas;   		    // Armazenará o número de total de sílabas contando com as silabas adicionais.
 	int numLetras;				// Armazena o número de letras na Palavra.
 	String[] silabasAdicionais; // Armazenará as sílabas que não farão parte da palara.
+	String[] silabasCompleto; //Armazena todas as silabas em ordem aleatória.
 	
 	public Palavra (char[] linha, int silabas)
 	{
@@ -20,7 +22,6 @@ public class Palavra {
 		 */
 		
 		// Variável que armazena a soma do numero de sílabas, constituintes ou não, da palavra.
-		int numTotalSilabas;
 		
 		if(linha != null && linha[0] != '.')
 		{
@@ -68,6 +69,40 @@ public class Palavra {
 					contador++;
 				}
 			}
+
+			silabasCompleto = new String[numTotalSilabas];
+			Random r = new Random();
+			
+			int indexSilabasPalavras = 0; /*!< Armazena qual último analisado da silabasPalavras */
+			int indexSilabasAdicionais = 0; /*!< Armazena qual último analisado da silabasAdicionais */
+			for(int i = 0; i < numTotalSilabas; i++) {
+				int randomNumber = r.getIntRand(2); /*!< Retornará valores 0 ou 1 */
+				
+				/*!< Se todas as silabas das silabasPalavras foram utilizadas, deve pegar apenas das silabasAdicionais */
+				if(indexSilabasPalavras == (silabasPalavra.length)) {
+					silabasCompleto[i] = new String(silabasAdicionais[indexSilabasAdicionais]);
+					indexSilabasAdicionais++;
+					continue;
+				}
+
+				/*!< Se todas as silabas das silabasAdicionais foram utilizadas, deve pegar apenas das silabasPalavras */
+				if(indexSilabasAdicionais == (silabasAdicionais.length)) {
+					silabasCompleto[i] = new String(silabasPalavra[indexSilabasPalavras]);
+					indexSilabasPalavras++;
+					continue;
+				}
+				
+				/*!< Se nenhum dos dois conjuntos de palavras teve todas as palavras selecionadas, pegar aleatoriamente entre os dois */
+				if(randomNumber % 2 == 0) {
+					silabasCompleto[i] = new String(silabasPalavra[indexSilabasPalavras]);
+					indexSilabasPalavras++;
+				} else {
+					silabasCompleto[i] = new String(silabasAdicionais[indexSilabasAdicionais]);
+					indexSilabasAdicionais++;
+				}
+			
+			}
+			
 		}else
 		{
 			silabasPalavra = null;
@@ -92,10 +127,20 @@ public class Palavra {
 		return(silabasAdicionais);
 	}
 	
+	public String[] getSilabasCompleto()
+	{
+		return(silabasCompleto);
+	}
+	
+	
 	public int getNumSilabas()
 	{
 		return(numSilabas);
 	}	
+	
+	public int getNumTotalSilabas() {
+		return numTotalSilabas;
+	}
 	
 	public int getNumLetras()
 	{
@@ -111,14 +156,17 @@ public class Palavra {
 		 */
 		
 		String retorno = "";
-		int numTotalSilabas = numSilabas + silabasAdicionais.length;
-		
+	
 		retorno += "NumSilabas: " + numSilabas  + "\n";
+		retorno += "NumTotalSilabas: " + numTotalSilabas + "\n";
 		retorno += "NumLetras: " + numLetras + "\n";
 		retorno += "Palavra: " + silabasConcatenadas + "\n";
 		
 		retorno+= "Silabas Extras: ";
 		for(int i = 0; i <  numTotalSilabas - numSilabas; i++) retorno += silabasAdicionais[i] + " ";
+		retorno+= "\n";
+		retorno += "Todas as silabas: ";
+		for(int i = 0; i < numTotalSilabas; i++) retorno += silabasCompleto[i] + " ";		
 		
 		return retorno;
 	}

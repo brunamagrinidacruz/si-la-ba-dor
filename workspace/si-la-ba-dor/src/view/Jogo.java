@@ -23,15 +23,22 @@ public class Jogo extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane = new JPanel();
 
-	private final int ESPACAMENTO = 200;
+	private String usuario;
+	private Niveis nivel;
+	private Palavra palavra;
 	
+	private final int ESPACAMENTO = 200;
+
 	private int xProximaSilaba = 67;
 	private int xProximaBarra = 65;
 	
-	public Jogo(JFrame menu, String user, Niveis nivel) {
+	public Jogo(JFrame menu, String usuario, Niveis nivel) {
+		this.usuario = usuario;
+		this.nivel = nivel;
+		
 		ManipulaArquivo manipulaArquivo = new ManipulaArquivo(nivel);
-		Palavra palavra = manipulaArquivo.recebePalavra();
-		System.out.println(palavra);
+		this.palavra = manipulaArquivo.recebePalavra();
+		inicializarPalavraNaTela();
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 363);	
@@ -46,13 +53,13 @@ public class Jogo extends JFrame {
 		
 		ImageIcon img = new ImageIcon("assets/background_silabador.png");
 		
-		JLabel lblNivel = new JLabel("Nivel: " + nivel.getNivel());
+		JLabel lblNivel = new JLabel("Nivel: " + this.nivel.getNivel());
 		lblNivel.setForeground(new Color(0, 0, 128));
 		lblNivel.setFont(new Font("Cooper Black", Font.PLAIN, 20));
 		lblNivel.setBounds(29, 8, 113, 40);
 		contentPane.add(lblNivel);
 		
-		JLabel lblJogador = new JLabel("Jogador: " + user);
+		JLabel lblJogador = new JLabel("Jogador: " + this.usuario);
 		lblJogador.setForeground(new Color(0, 0, 128));
 		lblJogador.setFont(new Font("Cooper Black", Font.PLAIN, 50));
 		lblJogador.setBounds(277, 72, 747, 71);
@@ -120,5 +127,14 @@ public class Jogo extends JFrame {
 	private void selecionarSilaba(String texto) {
 		adicionarSilaba(texto);
 		adicionarBarra(texto.length());
+	}
+	
+	/**
+	 * Função responsável por inicializar a palavra na tela. 
+	 * Cria os botões com as sílabas.
+	 * Cria os campos de preenchimento para o usuário colocar as sílabas.
+	 * */
+	private void inicializarPalavraNaTela() {
+		System.out.println(palavra);
 	}
 }
