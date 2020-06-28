@@ -1,0 +1,9 @@
+- Arquivos
+Os arquivos serão por níveis e os conteúdos serão
+silabas separadas por -] [silabas adicionais que irão aparecer separadas por espaço] 
+Exemplo: pe-dra ca to li to 
+
+- Níveis
+Level 1: até 3 silabas e será apresentado 6 sílabas para escolha
+Level 2: até 4 sílabas e será apresentado 6 sílabas para escolha
+Level: acima de 4 sílabas e será apresentado 8 sílabas para escolha
