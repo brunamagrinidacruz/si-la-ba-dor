@@ -26,6 +26,7 @@ public class Jogo extends JFrame {
 	private int xProximaSilaba = 67;
 	private int xProximaBarra = 65;
 	
+	//mudanças
 	public Jogo(JFrame menu, String user, Niveis nivel) {
 		ManipulaArquivo manipulaArquivo = new ManipulaArquivo(nivel);
 		Palavra palavra = manipulaArquivo.recebePalavra();
