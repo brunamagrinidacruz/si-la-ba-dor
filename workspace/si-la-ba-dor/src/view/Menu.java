@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import control.Niveis;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -101,7 +104,24 @@ public class Menu extends JFrame {
 					return;
 				}
 				menu.setVisible(false);
-				Jogo jogo = new Jogo(menu, txtName.getText(), cbLevel.getSelectedIndex());
+				
+				/*!< Inicializando a variavel de nivel como nivel 1 e caso seja diferente conforme o comboBox, o valor é alterado */
+				Niveis nivel = Niveis.NIVEL1;
+				switch(cbLevel.getSelectedIndex()) {
+					case 0:
+						break;
+					case 1: 
+						nivel = Niveis.NIVEL2;
+						break;
+					case 2:
+						nivel = Niveis.NIVEL3;
+						break;
+					default:
+						System.out.println("Houve um problema com o nivel: " + cbLevel.getSelectedIndex());
+				}
+				
+				
+				Jogo jogo = new Jogo(menu, txtName.getText(), nivel);
 				jogo.setLocationRelativeTo(null);
 				jogo.setVisible(true);			
 			}

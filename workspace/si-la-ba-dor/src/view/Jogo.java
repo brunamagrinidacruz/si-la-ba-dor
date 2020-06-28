@@ -3,6 +3,9 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import control.Niveis;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -21,7 +24,7 @@ public class Jogo extends JFrame {
 	private int xProximaSilaba = 67;
 	private int xProximaBarra = 65;
 	
-	public Jogo(JFrame menu, String user, int nivel) {
+	public Jogo(JFrame menu, String user, Niveis nivel) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 363);	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +40,7 @@ public class Jogo extends JFrame {
 		ImageIcon img = new ImageIcon("assets/background_silabador.png");
 
 		
-		JLabel lblNivel = new JLabel("Nivel: " + (nivel + 1));
+		JLabel lblNivel = new JLabel("Nivel: " + nivel.getNivel());
 		lblNivel.setForeground(new Color(0, 0, 128));
 		lblNivel.setFont(new Font("Cooper Black", Font.PLAIN, 20));
 		lblNivel.setBounds(29, 8, 113, 40);

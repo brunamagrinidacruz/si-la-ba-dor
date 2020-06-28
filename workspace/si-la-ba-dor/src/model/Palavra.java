@@ -19,10 +19,9 @@ public class Palavra {
 		 *   	Método para inicializar o objeto, o vetor "linha" corresponde a uma linha do arquivo.
 		 */
 		
-		// Variável qeu armazena a soma do numero de sílabas, constituintes ou não, da palavra.
+		// Variável que armazena a soma do numero de sílabas, constituintes ou não, da palavra.
 		int numTotalSilabas;
 		
-				
 		if(linha != null && linha[0] != '.')
 		{
 			if(silabas >= 5) numTotalSilabas = 8;
@@ -30,7 +29,7 @@ public class Palavra {
 			
 			numSilabas = silabas;
 			silabasConcatenadas = "";
-			silabasPalavra    = new String[numSilabas];
+			silabasPalavra = new String[numSilabas];
 			
 			if(silabas >= 8) silabasAdicionais = null;
 			else silabasAdicionais = new String[numTotalSilabas - numSilabas];
