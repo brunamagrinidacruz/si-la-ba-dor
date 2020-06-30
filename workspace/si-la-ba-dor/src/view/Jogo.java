@@ -69,27 +69,19 @@ public class Jogo extends JFrame {
 		
 		contentPane = new JPanel();
 		
-		contentPane.setLayout(new BorderLayout());
+		//contentPane.setLayout(new BorderLayout());
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		inicializarSilabas();
 		
-		ImageIcon img = new ImageIcon("assets/background_silabador.png");
-		
-		background = new JLabel(img);
-		
-		contentPane.add(background);
-		
-		background.setLayout(new FlowLayout());
-		
 		JLabel lblNivel = new JLabel("Nivel: " + this.nivel.getNivel());
 
 		lblNivel.setForeground(new Color(0, 0, 128));
 		lblNivel.setFont(new Font("Cooper Black", Font.PLAIN, 20));
 		lblNivel.setBounds(29, 8, 113, 40);
-		background.add(lblNivel);
+		contentPane.add(lblNivel);
 		
 		JLabel lblJogador = new JLabel("Jogador: " + this.usuario);
 		lblJogador.setForeground(new Color(0, 0, 128));
@@ -99,7 +91,7 @@ public class Jogo extends JFrame {
 				
 		lblJogador.setFont(new Font("Cooper Black", Font.PLAIN, 50));
 		lblJogador.setBounds(277, 72, 747, 71);
-		background.add(lblJogador);
+		contentPane.add(lblJogador);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
@@ -110,15 +102,7 @@ public class Jogo extends JFrame {
 		});
 		btnVoltar.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnVoltar.setBounds(1013, 17, 94, 24);
-		background.add(btnVoltar);
-		
-		JButton btnSilaba = new JButton("PRO");
-		
-		btnSilaba.setBackground(new Color(0, 0, 128));
-		btnSilaba.setForeground(new Color(255, 204, 102));
-		btnSilaba.setFont(new Font("Cooper Black", Font.PLAIN, 40));
-		btnSilaba.setBounds(178, 199, 141, 89);
-		background.add(btnSilaba);
+		contentPane.add(btnVoltar);
 		
 		lblMensagem = new JLabel("");
 		lblMensagem.setForeground(SystemColor.activeCaption);
@@ -227,7 +211,7 @@ public class Jogo extends JFrame {
 	 */
 	private void colocarSilabasNaTela() {
 		for(int i = 0; i < numeroSilabasNaTela; i++) {
-			background.add(silabasNaTela[i]);
+			contentPane.add(silabasNaTela[i]);
 			contentPane.add(silabasNaTela[i]);
 		}
 		repaint();
