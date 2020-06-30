@@ -14,15 +14,12 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.SystemColor;
-import java.awt.FlowLayout;
 
 public class Jogo extends JFrame {
 
@@ -50,7 +47,7 @@ public class Jogo extends JFrame {
 	private int xProximaSilaba = 67;
 	private int xProximaBarra = 65;
 	
-	private JLabel background;
+//	private JLabel background;
 	
 	public Jogo(JFrame menu, String usuario, Niveis nivel){
 		this.menu = menu;
@@ -125,8 +122,8 @@ public class Jogo extends JFrame {
 			}
 		});
 		btnLimparSilabas.setBounds(921, 608, 220, 25);
-//		contentPane.add(btnLimparSilabas);
-		background.add(btnLimparSilabas);
+		contentPane.add(btnLimparSilabas);
+//		background.add(btnLimparSilabas);
 		
 		lblMensagem = new JLabel("");
 		lblMensagem.setForeground(SystemColor.activeCaption);
@@ -187,15 +184,17 @@ public class Jogo extends JFrame {
 							/*!< A nova partida será no próximo nível caso o nível atual não for o 3º. Se for o 3º, a pessoa continuará nele */
 							Niveis proximoNivel;
 							int valorNivel = nivel.getNivel();
-							valorNivel++;
 							switch(valorNivel) {
 								case 1:
 									proximoNivel = Niveis.NIVEL2;
+									break;
 								case 2: 
 									proximoNivel = Niveis.NIVEL3;
+									break;
 								default:
 									proximoNivel = Niveis.NIVEL3;
 							}
+							
 							Jogo jogo = new Jogo(menu, usuario, proximoNivel);
 							jogo.setLocationRelativeTo(null);
 							jogo.setVisible(true);		
