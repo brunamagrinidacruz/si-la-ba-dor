@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 
 import control.ManipulaArquivo;
 import control.Niveis;
+import model.ArquivoException;
 import model.Palavra;
 
 import javax.swing.JLabel;
@@ -38,12 +39,19 @@ public class Jogo extends JFrame {
 	private int xProximaSilaba = 67;
 	private int xProximaBarra = 65;
 	
-	public Jogo(JFrame menu, String usuario, Niveis nivel) {
+	public Jogo(JFrame menu, String usuario, Niveis nivel){
 		this.usuario = usuario;
 		this.nivel = nivel;
 		
-		ManipulaArquivo manipulaArquivo = new ManipulaArquivo(nivel);
-		this.palavra = manipulaArquivo.recebePalavra();
+		ManipulaArquivo manipulaArquivo = null;
+		
+		try {
+			manipulaArquivo = new ManipulaArquivo(nivel);
+		} catch (ArquivoException e) {
+			e.printStackTrace();
+		}
+		
+		this.palavra = manipulaArquivo.recebePalavra();		
 		inicializarSilabas();
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
