@@ -10,6 +10,8 @@ import exception.ArquivoException;
 import model.Palavra;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
@@ -26,6 +28,9 @@ public class Jogo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	
+	/*!< Objeto do menu do jogo */
+	private JFrame menu;
 
 	/*!< JLabel utilizado para informar situação do usuário durante o jogo */
 	private JLabel lblMensagem;
@@ -48,6 +53,7 @@ public class Jogo extends JFrame {
 	private JLabel background;
 	
 	public Jogo(JFrame menu, String usuario, Niveis nivel){
+		this.menu = menu;
 		this.usuario = usuario;
 		this.nivel = nivel;
 		
@@ -95,7 +101,7 @@ public class Jogo extends JFrame {
 		lblJogador.setForeground(new Color(0, 0, 128));
 		lblJogador.setFont(new Font("Dialog", Font.PLAIN, 20));
 		lblJogador.setBounds(143, 8, 134, 40);
-		contentPane.add(lblJogador);
+//		contentPane.add(lblJogador);
 				
 		lblJogador.setFont(new Font("Cooper Black", Font.PLAIN, 50));
 		lblJogador.setBounds(277, 72, 747, 71);
@@ -104,8 +110,7 @@ public class Jogo extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				menu.setVisible(true);
-				setVisible(false);
+				voltarParaMenu();
 			}
 		});
 		btnVoltar.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -119,12 +124,6 @@ public class Jogo extends JFrame {
 		btnSilaba.setFont(new Font("Cooper Black", Font.PLAIN, 40));
 		btnSilaba.setBounds(178, 199, 141, 89);
 		background.add(btnSilaba);
-		
-		lblMensagem = new JLabel("");
-		lblMensagem.setForeground(SystemColor.activeCaption);
-		lblMensagem.setFont(new Font("Dialog", Font.PLAIN, 20));
-		lblMensagem.setBounds(411, 44, 477, 40);
-		contentPane.add(lblMensagem);
 		
 		JButton btnLimparSilabas = new JButton("Limpar sílabas");
 		btnLimparSilabas.addActionListener(new ActionListener() {
@@ -142,8 +141,24 @@ public class Jogo extends JFrame {
 			}
 		});
 		btnLimparSilabas.setBounds(921, 608, 220, 25);
-		contentPane.add(btnLimparSilabas);
+//		contentPane.add(btnLimparSilabas);
+		background.add(btnLimparSilabas);
+		
+		lblMensagem = new JLabel("");
+		lblMensagem.setForeground(SystemColor.activeCaption);
+		lblMensagem.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblMensagem.setBounds(411, 44, 477, 40);
+		contentPane.add(lblMensagem);
 			
+	}
+	
+	
+	/**
+	 * Retorna o usuário para a tela de menu
+	 * */
+	private void voltarParaMenu() {
+		menu.setVisible(true);
+		setVisible(false);
 	}
 	
 	/**
@@ -183,8 +198,27 @@ public class Jogo extends JFrame {
 							}
 						}
 						
-						lblMensagem.setText("Você ganhou, parabéns!");
-						repaint();
+						int input = JOptionPane.showConfirmDialog(null, "Você acertou a palavra!\nDeseja jogar novamente?", "Parabéns!", JOptionPane.YES_NO_OPTION);
+						if(input == 0) {/*!< Sim. Iniciar nova partida */
+							/*!< A nova partida será no próximo nível caso o nível atual não for o 3º. Se for o 3º, a pessoa continuará nele */
+							Niveis proximoNivel;
+							int valorNivel = nivel.getNivel();
+							valorNivel++;
+							switch(valorNivel) {
+								case 1:
+									proximoNivel = Niveis.NIVEL2;
+								case 2: 
+									proximoNivel = Niveis.NIVEL3;
+								default:
+									proximoNivel = Niveis.NIVEL3;
+							}
+							Jogo jogo = new Jogo(menu, usuario, proximoNivel);
+							jogo.setLocationRelativeTo(null);
+							jogo.setVisible(true);		
+						} else { /*!< Não. Voltar para a página inicial */
+							voltarParaMenu();
+						}
+						
 					}
 					
 				}
@@ -216,7 +250,6 @@ public class Jogo extends JFrame {
 		lblSilaba.setForeground(Color.ORANGE);
 		lblSilaba.setFont(new Font("Cooper Black", Font.PLAIN, 32));
 		lblSilaba.setBounds(xProximaSilaba+7, 586, 348, 55);
-		
 		silabasNaTela[numeroSilabasNaTela] = lblSilaba;
 		numeroSilabasNaTela++;
 		this.xProximaSilaba = this.xProximaSilaba + ESPACAMENTO;
@@ -227,7 +260,7 @@ public class Jogo extends JFrame {
 	 */
 	private void colocarSilabasNaTela() {
 		for(int i = 0; i < numeroSilabasNaTela; i++) {
-			background.add(silabasNaTela[i]);
+//			background.add(silabasNaTela[i]);
 			contentPane.add(silabasNaTela[i]);
 		}
 		repaint();
