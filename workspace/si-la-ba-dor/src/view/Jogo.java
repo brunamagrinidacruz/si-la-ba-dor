@@ -44,11 +44,6 @@ public class Jogo extends JFrame {
 	
 	private JLabel background;
 	
-	public Jogo(JFrame menu, String user, Niveis nivel) {
-		ManipulaArquivo manipulaArquivo = new ManipulaArquivo(nivel);
-		Palavra palavra = manipulaArquivo.recebePalavra();
-		System.out.println(palavra);
-		
 	public Jogo(JFrame menu, String usuario, Niveis nivel){
 		this.usuario = usuario;
 		this.nivel = nivel;
@@ -117,8 +112,6 @@ public class Jogo extends JFrame {
 		btnSilaba.setBounds(178, 199, 141, 89);
 		background.add(btnSilaba);
 		
-		btnSilaba.addActionListener(new ActionListener() {
-
 		JButton btnLimparSilabas = new JButton("Limpar sílabas");
 		btnLimparSilabas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
