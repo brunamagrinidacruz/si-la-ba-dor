@@ -1,4 +1,4 @@
-package model;
+package exception;
 
 @SuppressWarnings("serial")
 public class ArquivoException extends Exception{

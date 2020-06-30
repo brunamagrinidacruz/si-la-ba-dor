@@ -1,5 +1,7 @@
 package model;
 
+import exception.ArquivoException;
+
 public class Palavra {
 	
 	/*

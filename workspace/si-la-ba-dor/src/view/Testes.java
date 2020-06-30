@@ -2,7 +2,7 @@ package view;
 
 import control.ManipulaArquivo;
 import control.Niveis;
-import model.ArquivoException;
+import exception.ArquivoException;
 
 public class Testes {
 	

@@ -6,12 +6,11 @@ import javax.swing.border.EmptyBorder;
 
 import control.ManipulaArquivo;
 import control.Niveis;
-import model.ArquivoException;
+import exception.ArquivoException;
 import model.Palavra;
 
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -121,6 +120,12 @@ public class Jogo extends JFrame {
 		btnSilaba.setBounds(178, 199, 141, 89);
 		background.add(btnSilaba);
 		
+		lblMensagem = new JLabel("");
+		lblMensagem.setForeground(SystemColor.activeCaption);
+		lblMensagem.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblMensagem.setBounds(411, 44, 477, 40);
+		contentPane.add(lblMensagem);
+		
 		JButton btnLimparSilabas = new JButton("Limpar sílabas");
 		btnLimparSilabas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -132,18 +137,13 @@ public class Jogo extends JFrame {
 				/*!< Voltando x ao x inicial das silabas na tela */
 				xProximaSilaba = 67;
 				numeroSilabasNaTela = 0;
+				lblMensagem.setText("");
 				repaint();
 			}
 		});
 		btnLimparSilabas.setBounds(921, 608, 220, 25);
 		contentPane.add(btnLimparSilabas);
-		
-		lblMensagem = new JLabel("");
-		lblMensagem.setForeground(SystemColor.activeCaption);
-		lblMensagem.setFont(new Font("Dialog", Font.PLAIN, 20));
-		lblMensagem.setBounds(411, 44, 477, 40);
-		contentPane.add(lblMensagem);
-	
+			
 	}
 	
 	/**
