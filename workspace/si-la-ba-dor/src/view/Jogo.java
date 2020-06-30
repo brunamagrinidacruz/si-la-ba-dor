@@ -17,12 +17,16 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.SystemColor;
 
 public class Jogo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane = new JPanel();
 
+	/*!< JLabel utilizado para informar situação do usuário durante o jogo */
+	private JLabel lblMensagem;
+	
 	private String usuario;
 	private Niveis nivel;
 	private Palavra palavra;
@@ -67,8 +71,8 @@ public class Jogo extends JFrame {
 		
 		JLabel lblJogador = new JLabel("Jogador: " + this.usuario);
 		lblJogador.setForeground(new Color(0, 0, 128));
-		lblJogador.setFont(new Font("Cooper Black", Font.PLAIN, 50));
-		lblJogador.setBounds(277, 72, 747, 71);
+		lblJogador.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblJogador.setBounds(143, 8, 134, 40);
 		contentPane.add(lblJogador);
 				
 		JButton btnVoltar = new JButton("Voltar");
@@ -98,6 +102,12 @@ public class Jogo extends JFrame {
 		});
 		btnLimparSilabas.setBounds(921, 608, 220, 25);
 		contentPane.add(btnLimparSilabas);
+		
+		lblMensagem = new JLabel("");
+		lblMensagem.setForeground(SystemColor.activeCaption);
+		lblMensagem.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblMensagem.setBounds(411, 44, 477, 40);
+		contentPane.add(lblMensagem);
 	
 	}
 	
@@ -125,8 +135,23 @@ public class Jogo extends JFrame {
 						adicionarSilaba(btnSilaba.getText());
 						colocarSilabasNaTela();
 					} else {
-						System.out.println("Você colocou o número máximo de sílabas.");
+						System.out.println("Você atingiu o número máximo de sílabas.");
 					}
+					
+					/*!< O usuário colocou o número máximo de sílabas então deve ser validado se a palavra está correta*/
+					if(numeroSilabasNaTela == palavra.getNumSilabas()) {
+						for(int i = 0; i < palavra.getNumSilabas(); i++) {
+							if(!palavra.getSilabasPalavra()[i].equals(silabasNaTela[i].getText())) {
+								lblMensagem.setText("Você não acertou a palavra. Tente limpar as sílabas e tentar novamente");
+								repaint();
+								return;
+							}
+						}
+						
+						lblMensagem.setText("Você ganhou, parabéns!");
+						repaint();
+					}
+					
 				}
 			});
 			
@@ -161,10 +186,12 @@ public class Jogo extends JFrame {
 		this.xProximaSilaba = this.xProximaSilaba + ESPACAMENTO;
 	}
 	
+	/**
+	 * Coloca na tela as silabas contidas no vetor silabasNaTela[]
+	 */
 	private void colocarSilabasNaTela() {
 		for(int i = 0; i < numeroSilabasNaTela; i++) 
 			contentPane.add(silabasNaTela[i]);
 		repaint();
 	}
-	
 }
