@@ -1,8 +1,7 @@
 package control;
 import java.io.*;
 
-import model.Random;
-import model.Palavra;  
+import model.*; 
 
 import java.util.LinkedList;
 import java.util.Queue;  
@@ -18,7 +17,7 @@ public class ManipulaArquivo {
 	
 	private Random r;
 	
-	public ManipulaArquivo(Niveis nivel)
+	public ManipulaArquivo(Niveis nivel) throws ArquivoException
 	{
 		File dados;
 		dificuldade = nivel;
@@ -44,10 +43,7 @@ public class ManipulaArquivo {
 				indices = new int[3];
 				break;
 			default:
-				nomeArquivo = null;
-				indices = null;
-				numPalavras = 0;
-				return;
+				throw new ArquivoException("A dificuldade selecionada é inválida.");
 		}
 		
 		dados = new File(nomeArquivo);
@@ -165,6 +161,10 @@ public class ManipulaArquivo {
 			
 			// Instancia o objeto a ser retornado.
 			nova = new Palavra(br.readLine().toCharArray(), numSilabas);			
+		}catch(ArquivoException e)
+		{
+			e.getMessage();
+			e.fillInStackTrace();
 		}catch(IOException e)
 		{
 			e.fillInStackTrace();
