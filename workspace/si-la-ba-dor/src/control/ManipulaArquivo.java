@@ -59,7 +59,7 @@ public class ManipulaArquivo {
 			for(int i = 0; i < tamanho; i++)
 				indices[i] = Integer.parseInt(br.readLine());
 			
-		}catch(IOException e)
+		} catch(IOException e) 
 		{
 			e.fillInStackTrace();
 		}
@@ -152,7 +152,7 @@ public class ManipulaArquivo {
 			do
 			{
 				palavraEscolhida = r.getIntRand(palavraEscolhida);
-			}while(cache.contains(palavraEscolhida) == true);
+			} while(cache.contains(palavraEscolhida) == true);
 			
 			// Insere na Cache a palavra escolhida.
 			atualizaCache(palavraEscolhida);
