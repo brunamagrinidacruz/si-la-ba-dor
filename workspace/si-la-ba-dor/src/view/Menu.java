@@ -126,13 +126,14 @@ public class Menu extends JFrame {
 				jogo.setVisible(true);			
 			}
 		});
+		
 		btnPlay.setBounds(606, 539, 194, 66);
 		contentPane.add(btnPlay);
 		
-				background = new JLabel("", img,JLabel.CENTER);
-				background.setBackground(new Color(51, 204, 204));
-				background.setBounds(0, 0, 1262, 673);
-				getContentPane().add(background);
+		background = new JLabel("", img,JLabel.CENTER);
+		background.setBackground(new Color(51, 204, 204));
+		background.setBounds(0, 0, 1262, 673);
+		getContentPane().add(background);
 
 	}
 }
