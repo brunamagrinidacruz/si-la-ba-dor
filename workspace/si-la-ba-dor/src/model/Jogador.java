@@ -3,8 +3,8 @@ package model;
 public class Jogador extends Usuario {
 	private int pontuacao;
 	
-	public Jogador(String nome, int tipoUsuario) {
-		super(nome, tipoUsuario);
+	public Jogador(String nome) {
+		super(nome);
 	}
 	
 	public void setPontuacao(int pontuacao) {
