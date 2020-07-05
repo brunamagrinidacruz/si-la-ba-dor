@@ -20,7 +20,7 @@ public class Gerenciamento {
 			arq.close();
 			
 		} catch (IOException e) {
-			System.err.printf("Erro na abertura do arquivo: %s.\n".concat(e.getMessage()));
+			System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage());
 		}
 		
 		return (dadoArq == null) ? false : true;
