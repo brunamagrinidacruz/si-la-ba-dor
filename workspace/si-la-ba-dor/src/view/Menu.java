@@ -103,27 +103,35 @@ public class Menu extends JFrame {
 					JOptionPane.showMessageDialog(null, "Insira seu nome!", "", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				menu.setVisible(false);
 				
-				/*!< Inicializando a variavel de nivel como nivel 1 e caso seja diferente conforme o comboBox, o valor é alterado */
-				Niveis nivel = Niveis.NIVEL1;
-				switch(cbLevel.getSelectedIndex()) {
-					case 0:
-						break;
-					case 1: 
-						nivel = Niveis.NIVEL2;
-						break;
-					case 2:
-						nivel = Niveis.NIVEL3;
-						break;
-					default:
-						System.out.println("Houve um problema com o nivel: " + cbLevel.getSelectedIndex());
+				boolean administrador = true;
+				
+				/*!< Se o usuário for administrador, a tela de gerenciamento deve ser aberta. Se não, a tela de jogo. */
+				if(administrador) {
+					Gerenciamento gerenciamento = new Gerenciamento(menu, txtName.getText());
+					gerenciamento.setLocationRelativeTo(null);
+					gerenciamento.setVisible(true);
+				} else {
+					/*!< Inicializando a variavel de nivel como nivel 1 e caso seja diferente conforme o comboBox, o valor é alterado */
+					Niveis nivel = Niveis.NIVEL1;
+					switch(cbLevel.getSelectedIndex()) {
+						case 0:
+							break;
+						case 1: 
+							nivel = Niveis.NIVEL2;
+							break;
+						case 2:
+							nivel = Niveis.NIVEL3;
+							break;
+						default:
+							System.out.println("Houve um problema com o nivel: " + cbLevel.getSelectedIndex());
+					}
+						
+					Jogo jogo = new Jogo(menu, txtName.getText(), nivel);
+					jogo.setLocationRelativeTo(null);
+					jogo.setVisible(true);	
 				}
-				
-				
-				Jogo jogo = new Jogo(menu, txtName.getText(), nivel);
-				jogo.setLocationRelativeTo(null);
-				jogo.setVisible(true);			
+				setVisible(false);
 			}
 		});
 		

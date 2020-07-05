@@ -139,7 +139,7 @@ public class Jogo extends JFrame {
 	 * */
 	private void voltarParaMenu() {
 		menu.setVisible(true);
-		setVisible(false);
+		dispose();
 	}
 	
 	/**
