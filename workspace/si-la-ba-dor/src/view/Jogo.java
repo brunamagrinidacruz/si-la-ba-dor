@@ -194,10 +194,10 @@ public class Jogo extends JFrame {
 								default:
 									proximoNivel = Niveis.NIVEL3;
 							}
-							
 							Jogo jogo = new Jogo(menu, usuario, proximoNivel);
 							jogo.setLocationRelativeTo(null);
-							jogo.setVisible(true);		
+							jogo.setVisible(true);
+							dispose();
 						} else { /*!< Não. Voltar para a página inicial */
 							voltarParaMenu();
 						}
@@ -248,4 +248,5 @@ public class Jogo extends JFrame {
 		}
 		repaint();
 	}
+	
 }
