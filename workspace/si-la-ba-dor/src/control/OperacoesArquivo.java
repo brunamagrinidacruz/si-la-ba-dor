@@ -14,7 +14,7 @@ public class OperacoesArquivo {
 			
 			dadoArq = lerArq.readLine(); // lê a primeira linha do arquivo para começar o loop
 			
-			while (dadoArq != null && dadoArq != nome) // procura o nome no arquivo até o final
+			while (dadoArq != null && dadoArq.equals(nome)) // procura o nome no arquivo até o final
 				dadoArq = lerArq.readLine();
 			
 			arq.close();
