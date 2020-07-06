@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.Niveis;
+import control.OperacoesArquivo;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -104,8 +105,9 @@ public class Menu extends JFrame {
 					return;
 				}
 				
-				boolean administrador = true;
-				
+				OperacoesArquivo operacoesArquivo = new OperacoesArquivo();
+				boolean administrador = operacoesArquivo.verificarAdmistrador(txtName.getText());
+
 				/*!< Se o usuário for administrador, a tela de gerenciamento deve ser aberta. Se não, a tela de jogo. */
 				if(administrador) {
 					Gerenciamento gerenciamento = new Gerenciamento(menu, txtName.getText());

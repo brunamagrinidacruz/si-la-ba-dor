@@ -74,6 +74,14 @@ public class Gerenciamento extends JFrame {
 					return;
 				}
 				
+				int posicaoX = 216;
+				for(int i = 0; i < quantidadeDeSilabas; i++) {
+					JTextField silaba = new JTextField();
+					txtQuantidadeSilabas.setBounds(100, posicaoX + 100, 114, 19);
+					txtQuantidadeSilabas.setColumns(10);
+					contentPane.add(txtQuantidadeSilabas);
+				}
+				repaint();
 			}
 		});
 		btnCriarSilabas.setBounds(223, 213, 142, 25);

@@ -12,9 +12,9 @@ public class OperacoesArquivo {
 			FileReader arq = new FileReader("administradores.txt");
 			BufferedReader lerArq = new BufferedReader(arq);
 			
-			dadoArq = lerArq.readLine(); // lê a primeira linha do arquivo para começar o loop
+			dadoArq = lerArq.readLine(); // lï¿½ a primeira linha do arquivo para comeï¿½ar o loop
 			
-			while (dadoArq != null && dadoArq != nome) // procura o nome no arquivo até o final
+			while (dadoArq != null && dadoArq != nome) // procura o nome no arquivo atï¿½ o final
 				dadoArq = lerArq.readLine();
 			
 			arq.close();
