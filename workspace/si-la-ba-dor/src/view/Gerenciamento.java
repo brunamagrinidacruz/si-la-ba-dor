@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -19,11 +21,16 @@ public class Gerenciamento extends JFrame {
 	/*!< Objeto do menu do jogo */
 	private JFrame menu;
 	
+	private int quantidadeDeSilabas;
+	
 	/*!< Silabas das palavras presente na tela */
-	private JTextField silabas[];
+	private List<JTextField> silabas;
+	private List<JButton> botoesSilabas;
 
 	public Gerenciamento(JFrame menu, String string) {
 		this.menu = menu;
+		silabas = new ArrayList<JTextField>();
+		botoesSilabas = new ArrayList<JButton>();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -72,25 +79,9 @@ public class Gerenciamento extends JFrame {
 					return;
 				}
 				
-				silabas = new JTextField[quantidadeDeSilabas];
-				int posicaoY = 250;
-				for(int i = 0; i < quantidadeDeSilabas; i++) {
-					JTextField silaba = new JTextField();
-					silaba.setBounds(86, posicaoY, 114, 19);
-					silabas[i] = silaba;
-					contentPane.add(silaba);
-					posicaoY += 30;
-					
-//					JButton botaoSilaba = new JButton("Apagar sílaba");
-//					botaoSilaba.addActionListener(new ActionListener() {
-//						public void actionPerformed(ActionEvent arg0) {
-//							silabas = ArrayUtils.removeElement(silabas, silaba);
-//						}
-//					});
-//					botaoSilaba.setBounds(130, posicaoY, 114, 19);
-//					contentPane.add(botaoSilaba);
-				}
-				repaint();
+				setQuantidadeDeSilabas(quantidadeDeSilabas);
+				criarSilabas();		
+				colocarSilabasNaTela();
 			}
 		});
 		btnCriarSilabas.setBounds(223, 213, 142, 25);
@@ -117,4 +108,49 @@ public class Gerenciamento extends JFrame {
 		menu.setVisible(true);
 		dispose();
 	}
+	
+	private void setQuantidadeDeSilabas(int quantidadeDeSilabas) {
+		this.quantidadeDeSilabas = quantidadeDeSilabas;
+	}
+	
+	private void criarSilabas() {
+		for(int i = 0; i < this.quantidadeDeSilabas; i++) {
+			JTextField silaba = new JTextField();
+			silabas.add(silaba);
+			
+			JButton botaoSilaba = new JButton("Apagar sílaba");
+			botaoSilaba.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					silabas.remove(silaba);
+					botoesSilabas.remove(botaoSilaba);
+					contentPane.remove(silaba);
+					contentPane.remove(botaoSilaba);
+					colocarSilabasNaTela();
+					setQuantidadeDeSilabas(quantidadeDeSilabas - 1);
+				}
+			});
+			botoesSilabas.add(botaoSilaba);
+		}
+	}
+
+	private void colocarSilabasNaTela() {
+		int posicaoY = 250;
+		for(JTextField silaba : this.silabas) {
+			contentPane.remove(silaba);
+			silaba.setBounds(86, posicaoY, 114, 19);
+			contentPane.add(silaba);
+			posicaoY += 30;
+		}
+		posicaoY = 250;
+		for(JButton botao : this.botoesSilabas) {
+			contentPane.remove(botao);
+			botao.setBounds(230, posicaoY, 114, 19);
+			contentPane.add(botao);
+			posicaoY += 30;
+		}
+		
+		repaint();
+	}
+	
+
 }
