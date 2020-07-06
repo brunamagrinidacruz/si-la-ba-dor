@@ -4,11 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import exception.OperacoesException;
+
 public class OperacoesArquivo {
 	private String dadoArq;
 	
-	public boolean verificarAdmistrador(String nome) {
+	public boolean verificarAdmistrador(String nome) throws OperacoesException {
 		try {
+			if (nome.equals("")) throw new OperacoesException("Nome não preenchido.");
+			
 			FileReader arq = new FileReader("administradores.txt");
 			BufferedReader lerArq = new BufferedReader(arq);
 			
