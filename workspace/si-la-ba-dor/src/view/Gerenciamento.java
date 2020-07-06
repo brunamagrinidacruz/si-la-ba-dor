@@ -51,7 +51,6 @@ public class Gerenciamento extends JFrame {
 		JButton btnCriarSilabas = new JButton("Criar silabas");
 		btnCriarSilabas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(txtQuantidadeSilabas.getText());
 				if(txtQuantidadeSilabas.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Digite a quantidade de sílabas!", "", JOptionPane.ERROR_MESSAGE);
 					return;
@@ -60,7 +59,6 @@ public class Gerenciamento extends JFrame {
 				int quantidadeDeSilabas = 0;
 				try {
 					quantidadeDeSilabas = Integer.parseInt(txtQuantidadeSilabas.getText());
-					System.out.println(quantidadeDeSilabas);
 				} catch (java.lang.NumberFormatException exception) {
 					JOptionPane.showMessageDialog(null, "Digite um valor numérico e inteiro.", "", JOptionPane.ERROR_MESSAGE);
 					return;
@@ -74,12 +72,23 @@ public class Gerenciamento extends JFrame {
 					return;
 				}
 				
-				int posicaoX = 216;
+				silabas = new JTextField[quantidadeDeSilabas];
+				int posicaoY = 250;
 				for(int i = 0; i < quantidadeDeSilabas; i++) {
 					JTextField silaba = new JTextField();
-					txtQuantidadeSilabas.setBounds(100, posicaoX + 100, 114, 19);
-					txtQuantidadeSilabas.setColumns(10);
-					contentPane.add(txtQuantidadeSilabas);
+					silaba.setBounds(86, posicaoY, 114, 19);
+					silabas[i] = silaba;
+					contentPane.add(silaba);
+					posicaoY += 30;
+					
+					JButton botaoSilaba = new JButton("Apagar sílaba");
+					botaoSilaba.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							silabas = ArrayUtils.removeElement(silabas, silaba);
+						}
+					});
+					botaoSilaba.setBounds(130, posicaoY, 114, 19);
+					contentPane.add(botaoSilaba);
 				}
 				repaint();
 			}
