@@ -15,7 +15,7 @@ public class Gerenciamento extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
-
+	
 	/*!< Objeto do menu do jogo */
 	private JFrame menu;
 	
@@ -40,74 +40,21 @@ public class Gerenciamento extends JFrame {
 				voltarParaMenu();
 			}
 		});
-		btnVoltar.setBounds(28, 12, 117, 25);
+		btnVoltar.setBounds(29, 85, 117, 25);
 		contentPane.add(btnVoltar);
 		
-		JTextField txtQuantidadeSilabas = new JTextField();
-		txtQuantidadeSilabas.setBounds(86, 216, 114, 19);
-		contentPane.add(txtQuantidadeSilabas);
-		txtQuantidadeSilabas.setColumns(10);
-		
-		JButton btnCriarSilabas = new JButton("Criar silabas");
-		btnCriarSilabas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(txtQuantidadeSilabas.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Digite a quantidade de sílabas!", "", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				
-				int quantidadeDeSilabas = 0;
-				try {
-					quantidadeDeSilabas = Integer.parseInt(txtQuantidadeSilabas.getText());
-				} catch (java.lang.NumberFormatException exception) {
-					JOptionPane.showMessageDialog(null, "Digite um valor numérico e inteiro.", "", JOptionPane.ERROR_MESSAGE);
-					return;
-				} catch (Exception exception) {
-					JOptionPane.showMessageDialog(null, "A quantidade de sílabas digitada não é válida.", "", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				
-				if(quantidadeDeSilabas <= 1 || quantidadeDeSilabas >= 8) {
-					JOptionPane.showMessageDialog(null, "Quantidade de sílabas inválida.", "", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				
-				silabas = new JTextField[quantidadeDeSilabas];
-				int posicaoY = 250;
-				for(int i = 0; i < quantidadeDeSilabas; i++) {
-					JTextField silaba = new JTextField();
-					silaba.setBounds(86, posicaoY, 114, 19);
-					silabas[i] = silaba;
-					contentPane.add(silaba);
-					posicaoY += 30;
-					
-//					JButton botaoSilaba = new JButton("Apagar sílaba");
-//					botaoSilaba.addActionListener(new ActionListener() {
-//						public void actionPerformed(ActionEvent arg0) {
-//							silabas = ArrayUtils.removeElement(silabas, silaba);
-//						}
-//					});
-//					botaoSilaba.setBounds(130, posicaoY, 114, 19);
-//					contentPane.add(botaoSilaba);
-				}
-				repaint();
+		JButton btnInserirPalavra = new JButton("Inserir Palavra");
+		btnInserirPalavra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				inserirPalavra();
 			}
 		});
-		btnCriarSilabas.setBounds(223, 213, 142, 25);
-		contentPane.add(btnCriarSilabas);
+		btnInserirPalavra.setBounds(167, 85, 117, 24);
+		contentPane.add(btnInserirPalavra);
 		
-		JTextField txtPalavra = new JTextField();
-		txtPalavra.setBounds(86, 145, 114, 19);
-		contentPane.add(txtPalavra);
-		txtPalavra.setColumns(10);
-		
-		JLabel lblPalavra = new JLabel("Digite a palavra separando as silabas por espaço");
-		lblPalavra.setBounds(88, 118, 401, 15);
-		contentPane.add(lblPalavra);
-		
-		JLabel lblQuantidadeDeSilabas = new JLabel("Quantidade de silabas:");
-		lblQuantidadeDeSilabas.setBounds(86, 189, 401, 15);
-		contentPane.add(lblQuantidadeDeSilabas);
+		JLabel lblAdministrador = new JLabel("Administrador: " + string);
+		lblAdministrador.setBounds(29, 11, 155, 34);
+		contentPane.add(lblAdministrador);
 	}
 	
 	/**
@@ -116,5 +63,11 @@ public class Gerenciamento extends JFrame {
 	private void voltarParaMenu() {
 		menu.setVisible(true);
 		dispose();
+	}
+	
+	private void inserirPalavra() {
+		InserirPalavra ip = new InserirPalavra(this);
+		ip.setLocationRelativeTo(null);
+		ip.setVisible(true);
 	}
 }

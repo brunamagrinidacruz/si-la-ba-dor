@@ -137,7 +137,7 @@ public class Menu extends JFrame {
 						
 					Jogo jogo = new Jogo(menu, txtName.getText(), nivel);
 					jogo.setLocationRelativeTo(null);
-					jogo.setVisible(true);	
+					jogo.setVisible(true);
 				}
 				setVisible(false);
 			}
