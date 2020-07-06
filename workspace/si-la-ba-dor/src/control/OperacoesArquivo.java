@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Gerenciamento {
+public class OperacoesArquivo {
 	private String dadoArq;
 	
 	public boolean verificarAdmistrador(String nome) {
