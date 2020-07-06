@@ -81,14 +81,14 @@ public class Gerenciamento extends JFrame {
 					contentPane.add(silaba);
 					posicaoY += 30;
 					
-					JButton botaoSilaba = new JButton("Apagar sílaba");
-					botaoSilaba.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent arg0) {
-							silabas = ArrayUtils.removeElement(silabas, silaba);
-						}
-					});
-					botaoSilaba.setBounds(130, posicaoY, 114, 19);
-					contentPane.add(botaoSilaba);
+//					JButton botaoSilaba = new JButton("Apagar sílaba");
+//					botaoSilaba.addActionListener(new ActionListener() {
+//						public void actionPerformed(ActionEvent arg0) {
+//							silabas = ArrayUtils.removeElement(silabas, silaba);
+//						}
+//					});
+//					botaoSilaba.setBounds(130, posicaoY, 114, 19);
+//					contentPane.add(botaoSilaba);
 				}
 				repaint();
 			}
