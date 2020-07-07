@@ -20,20 +20,10 @@ public class Gerenciamento extends JFrame {
 	
 	/*!< Objeto do menu do jogo */
 	private JFrame menu;
-	
-<<<<<<< HEAD
-	public Gerenciamento(JFrame menu, String string) {
-=======
-	private int quantidadeDeSilabas;
-	
-	/*!< Silabas das palavras presente na tela */
-	private List<JTextField> silabas;
-	private List<JButton> botoesSilabas;
-	
+
 	Administrador usuario;
 
 	public Gerenciamento(JFrame menu, Usuario usuario) {
->>>>>>> 2c9119dfec2be8b8e3720f463cd2e3060a490b3d
 		this.menu = menu;
 		this.usuario = (Administrador) usuario;
 		
