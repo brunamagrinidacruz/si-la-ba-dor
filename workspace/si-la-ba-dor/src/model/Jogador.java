@@ -5,6 +5,7 @@ public class Jogador extends Usuario {
 	
 	public Jogador(String nome) {
 		super(nome);
+		this.pontuacao = 0;
 	}
 	
 	public void setPontuacao(int pontuacao) {

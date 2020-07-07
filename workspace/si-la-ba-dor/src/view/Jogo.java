@@ -125,6 +125,10 @@ public class Jogo extends JFrame {
 		});
 		btnLimparSilabas.setBounds(921, 608, 220, 25);
 		contentPane.add(btnLimparSilabas);
+		
+		JLabel lblPontuao = new JLabel("Pontua\u00E7\u00E3o: " + this.usuario.getPontuacao());
+		lblPontuao.setFont(new Font("Dialog", Font.PLAIN, 20));
+		contentPane.add(lblPontuao);
 //		background.add(btnLimparSilabas);
 		
 		lblMensagem = new JLabel("");
@@ -182,6 +186,7 @@ public class Jogo extends JFrame {
 						}
 						
 						int input = JOptionPane.showConfirmDialog(null, "Você acertou a palavra!\nDeseja jogar novamente?", "Parabéns!", JOptionPane.YES_NO_OPTION);
+						usuario.setPontuacao(usuario.getPontuacao() + nivel.getNivel());
 						if(input == 0) {/*!< Sim. Iniciar nova partida */
 							/*!< A nova partida será no próximo nível caso o nível atual não for o 3º. Se for o 3º, a pessoa continuará nele */
 							Niveis proximoNivel;
