@@ -7,7 +7,9 @@ import javax.swing.border.EmptyBorder;
 import control.ManipulaArquivo;
 import control.Niveis;
 import exception.ArquivoException;
+import model.Jogador;
 import model.Palavra;
+import model.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -32,7 +34,7 @@ public class Jogo extends JFrame {
 	/*!< JLabel utilizado para informar situação do usuário durante o jogo */
 	private JLabel lblMensagem;
 	
-	private String usuario;
+	private Jogador usuario;
 	private Niveis nivel;
 	private Palavra palavra;
 	
@@ -49,9 +51,9 @@ public class Jogo extends JFrame {
 	
 //	private JLabel background;
 	
-	public Jogo(JFrame menu, String usuario, Niveis nivel){
+	public Jogo(JFrame menu, Usuario usuario, Niveis nivel){
 		this.menu = menu;
-		this.usuario = usuario;
+		this.usuario = (Jogador) usuario;
 		this.nivel = nivel;
 		
 		ManipulaArquivo manipulaArquivo = null;
@@ -86,7 +88,7 @@ public class Jogo extends JFrame {
 		lblNivel.setBounds(29, 8, 113, 40);
 		contentPane.add(lblNivel);
 		
-		JLabel lblJogador = new JLabel("Jogador: " + this.usuario);
+		JLabel lblJogador = new JLabel("Jogador: " + usuario.getNome());
 		lblJogador.setForeground(new Color(0, 0, 128));
 		lblJogador.setFont(new Font("Dialog", Font.PLAIN, 20));
 		lblJogador.setBounds(143, 8, 134, 40);
@@ -123,6 +125,10 @@ public class Jogo extends JFrame {
 		});
 		btnLimparSilabas.setBounds(921, 608, 220, 25);
 		contentPane.add(btnLimparSilabas);
+		
+		JLabel lblPontuao = new JLabel("Pontua\u00E7\u00E3o: " + this.usuario.getPontuacao());
+		lblPontuao.setFont(new Font("Dialog", Font.PLAIN, 20));
+		contentPane.add(lblPontuao);
 //		background.add(btnLimparSilabas);
 		
 		lblMensagem = new JLabel("");
@@ -180,6 +186,7 @@ public class Jogo extends JFrame {
 						}
 						
 						int input = JOptionPane.showConfirmDialog(null, "Você acertou a palavra!\nDeseja jogar novamente?", "Parabéns!", JOptionPane.YES_NO_OPTION);
+						usuario.setPontuacao(usuario.getPontuacao() + nivel.getNivel());
 						if(input == 0) {/*!< Sim. Iniciar nova partida */
 							/*!< A nova partida será no próximo nível caso o nível atual não for o 3º. Se for o 3º, a pessoa continuará nele */
 							Niveis proximoNivel;
