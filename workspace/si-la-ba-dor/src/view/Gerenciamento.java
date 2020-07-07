@@ -3,6 +3,10 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Administrador;
+import model.Usuario;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,9 +30,13 @@ public class Gerenciamento extends JFrame {
 	/*!< Silabas das palavras presente na tela */
 	private List<JTextField> silabas;
 	private List<JButton> botoesSilabas;
+	
+	Administrador usuario;
 
-	public Gerenciamento(JFrame menu, String string) {
+	public Gerenciamento(JFrame menu, Usuario usuario) {
 		this.menu = menu;
+		this.usuario = (Administrador) usuario;
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -57,7 +65,7 @@ public class Gerenciamento extends JFrame {
 		btnInserirPalavra.setBounds(167, 85, 117, 24);
 		contentPane.add(btnInserirPalavra);
 		
-		JLabel lblAdministrador = new JLabel("Administrador: " + string);
+		JLabel lblAdministrador = new JLabel("Administrador: " + usuario.getNome());
 		lblAdministrador.setBounds(29, 11, 155, 34);
 		contentPane.add(lblAdministrador);
 	}

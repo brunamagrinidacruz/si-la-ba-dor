@@ -10,6 +10,9 @@ import javax.swing.border.EmptyBorder;
 import control.Niveis;
 import control.OperacoesArquivo;
 import exception.OperacoesException;
+import model.Administrador;
+import model.Jogador;
+import model.Usuario;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,6 +33,8 @@ public class Menu extends JFrame {
 	
 	private static Menu menu;
 
+	private Usuario usuario;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -116,10 +121,12 @@ public class Menu extends JFrame {
 
 				/*!< Se o usuário for administrador, a tela de gerenciamento deve ser aberta. Se não, a tela de jogo. */
 				if(administrador) {
-					Gerenciamento gerenciamento = new Gerenciamento(menu, txtName.getText());
+					usuario = new Administrador(txtName.getText());
+					Gerenciamento gerenciamento = new Gerenciamento(menu, usuario);
 					gerenciamento.setLocationRelativeTo(null);
 					gerenciamento.setVisible(true);
 				} else {
+					usuario = new Jogador(txtName.getText());
 					/*!< Inicializando a variavel de nivel como nivel 1 e caso seja diferente conforme o comboBox, o valor é alterado */
 					Niveis nivel = Niveis.NIVEL1;
 					switch(cbLevel.getSelectedIndex()) {
@@ -135,7 +142,7 @@ public class Menu extends JFrame {
 							System.out.println("Houve um problema com o nivel: " + cbLevel.getSelectedIndex());
 					}
 						
-					Jogo jogo = new Jogo(menu, txtName.getText(), nivel);
+					Jogo jogo = new Jogo(menu, usuario, nivel);
 					jogo.setLocationRelativeTo(null);
 					jogo.setVisible(true);
 				}
