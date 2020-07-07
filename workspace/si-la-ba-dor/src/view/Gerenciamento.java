@@ -5,12 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 public class Gerenciamento extends JFrame {
 
@@ -21,12 +17,6 @@ public class Gerenciamento extends JFrame {
 	/*!< Objeto do menu do jogo */
 	private JFrame menu;
 	
-	private int quantidadeDeSilabas;
-	
-	/*!< Silabas das palavras presente na tela */
-	private List<JTextField> silabas;
-	private List<JButton> botoesSilabas;
-
 	public Gerenciamento(JFrame menu, String string) {
 		this.menu = menu;
 		
