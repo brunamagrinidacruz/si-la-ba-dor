@@ -79,7 +79,7 @@ public class TestePalavra {
 		for(int i = 0; i < nova.getNumTotalSilabas(); i++)
 		{
 			test = false;
-			for(int j = 0; j < nova.getNumTotalSilabas(); i++)
+			for(int j = 0; j < nova.getNumTotalSilabas(); j++)
 			{
 				if(silabas[i].equals(silabasEsperadas[j]))
 					test = true;
@@ -105,13 +105,13 @@ public class TestePalavra {
 	@Test(expected=ArquivoException.class)
 	public void test01() throws ArquivoException
 	{
-		Palavra nova = new Palavra(".".toCharArray(), 7);
+		new Palavra(".".toCharArray(), 7);
 	}
 	
 	@Test(expected=ArquivoException.class)
 	public void test02() throws ArquivoException
 	{
-		Palavra nova = new Palavra(null, 7);
+		new Palavra(null, 7);
 	}
 	@Test
 	public void test03() throws ArquivoException
@@ -131,24 +131,24 @@ public class TestePalavra {
 	@Test(expected=ArquivoException.class)
 	public void test05() throws ArquivoException
 	{
-		Palavra nova = new Palavra("re".toCharArray(), 7);
+		new Palavra("re".toCharArray(), 7);
 	}
 
 	@Test(expected=ArquivoException.class)
 	public void test06() throws ArquivoException
 	{
-		Palavra nova = new Palavra("bo-la bom tram le i".toCharArray(), 3);
+		new Palavra("bo-la bom tram le i".toCharArray(), 3);
 	}
 	
 	@Test(expected=ArquivoException.class)
 	public void test07() throws ArquivoException
 	{
-		Palavra nova = new Palavra("pa-lha-ço lia so co".toCharArray(), 2);
+		new Palavra("pa-lha-ço lia so co".toCharArray(), 2);
 	}
 	
 	@Test(expected=ArquivoException.class)
 	public void test08() throws ArquivoException
 	{
-		Palavra nova = new Palavra("pa-lha-ço lia so co pra".toCharArray(), 3);
+		new Palavra("pa-lha-ço lia so co pra".toCharArray(), 3);
 	}
 }
