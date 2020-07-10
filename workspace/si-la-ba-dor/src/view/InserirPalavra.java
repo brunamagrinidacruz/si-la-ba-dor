@@ -1,14 +1,11 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -25,8 +22,6 @@ public class InserirPalavra extends JFrame {
 	private JFrame telaAnterior;
 	
 	private int quantidadeDeSilabas;
-	
-	private String[] levels = {"Nivel 1", "Nivel 2", "Nivel 3"};
 	
 	/*!< Silabas das palavras presente na tela */
 	private List<JTextField> silabas;
@@ -56,13 +51,6 @@ public class InserirPalavra extends JFrame {
 		});
 		btnVoltar.setBounds(28, 12, 117, 25);
 		contentPane.add(btnVoltar);
-		
-		JComboBox<Object> cbLevel = new JComboBox<Object>(levels);
-		cbLevel.setForeground(new Color(0, 0, 128));
-		cbLevel.setFont(new Font("Cooper Black", Font.BOLD, 30));
-		cbLevel.setBounds(496, 94, 235, 53);
-		cbLevel.setSelectedIndex(0);
-		contentPane.add(cbLevel);
 		
 		JTextField txtQuantidadeSilabas = new JTextField();
 		txtQuantidadeSilabas.setBounds(86, 216, 114, 19);
