@@ -10,7 +10,7 @@ O sistema possui 3 niveis de jogabilidades diferentes:
 ### Arquivos
 O SI-LA-BA-DOR utiliza dois tipos de arquivos: arquivos de níveis e o arquivo administrativo.
 
-## Arquivo de nível
+#### Arquivo de nível
 Os arquivos serão por níveis, ou seja, cada nível possui um arquivo. 
 O arquivo de nível possui nome nivel<número do nível>.txt como `nivel1.txt`.
 O arquivo irá conter um cabeçalho que informa a quantidade de palavras e quantas linhas deve-se pular para chegar numa determinada quantidade de sílabas. Além das palavras e as síalbas adicionais.
@@ -38,6 +38,6 @@ re-la-ci-o-na-men-to pa
 `1`: Ao pular 1 linha, chega-se a palavra de 6 silabas
 `2`: Ao pular 2 linhas, chega-se a palavra de 7 silabas
 
-## Arquivo administrativo
+#### Arquivo administrativo
 O arquivo administrativo simula um "banco de dados" simples. A ideia é conter os nomes de usuários que são administradores. Esses nomes, ao serem colocados na tela de Menu, são levados para uma página administrativa, não de jogo. 
 O arquivo administrativo possui nome `administradores.txt`.
