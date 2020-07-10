@@ -9,9 +9,10 @@ Projeto para disciplina de Programação Orientada a Objetos.
 ### Arquivos
 Os arquivos serão por níveis e os conteúdos serão
 
-`cabeçalho`
-
-`[silabas separadas por -] [silabas adicionais que irão aparecer separadas por espaço]`
+```
+cabeçalho
+[silabas separadas por -] [silabas adicionais que irão aparecer separadas por espaço]
+```
 
 Exemplo: 
 ```
