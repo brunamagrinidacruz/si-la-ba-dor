@@ -129,9 +129,8 @@ public class ManipulaArquivo {
 			// Pula o cabeçalho:
 			for(int i = 0; i < tamanhoCabecalho; i++)
 				br.readLine();
-
 			// Agora devemos, ou não, pular as linhas no arquivo para chegar no numero de silabas solicitado.
-			for(int i = 0; i < indices[silabas]; i++)
+			for(int i = 0; i < indices[silabas] - 1; i++)
 				br.readLine();
 
 			// Atribui, a variável palavraEscolhida, o número de palavras com a quantidade e sílabas escolhida
@@ -233,7 +232,7 @@ public class ManipulaArquivo {
 			numPalavras = Integer.parseInt(br.readLine());
 			numPalavras++;bw.write(String.valueOf(numPalavras));
 			bw.newLine();
-			System.out.println(numSilabasPalavra);
+			
 			for(int i = 0; i < indices.length; i++)
 			{
 				aux = Integer.parseInt(br.readLine());
@@ -249,13 +248,12 @@ public class ManipulaArquivo {
 				bw.write(br.readLine());
 				bw.newLine();
 			}
-			if(numSilabasPalavra == indices.length - 1)
+			
+			if(posicaoIndice == indices.length - 1)
 				numLinhasPuladas = numPalavras - indices[posicaoIndice];
 			else
 				numLinhasPuladas = indices[posicaoIndice + 1] - 1 - indices[posicaoIndice];
-			System.out.println((indices[posicaoIndice + 1]) + " - " + indices[posicaoIndice]);
-			System.out.println(numLinhasPuladas);
-			
+
 			/*!<Realiza uma busca nas palavras com o mesmo número de sílabas que a palavra a ser inserida, caso esta palavra seja encontrada, a inserção é interrompida.*/
 			for(int i = 0; i < numLinhasPuladas; i++)
 			{
@@ -270,20 +268,19 @@ public class ManipulaArquivo {
 						contador++;
 					silabaLida = new String(linha, inicioSilaba, contador - inicioSilaba);
 					contador++;
-					System.out.println(silabaLida);
+
 					if(silabaLida.equals(silabas[j]) == false)
 					{
 						silabasIguais = false;
 						break;
 					}
 				}
-				
 				/*!<Verifica se as palavras são iguais*/
 				if(silabasIguais)
 				{
-					System.out.println("Saiu.");
-					novo.delete();
 					br.close();
+					bw.close();
+					novo.delete();
 					return false;
 				}else
 					bw.write(linha);bw.newLine();
@@ -316,27 +313,26 @@ public class ManipulaArquivo {
 		{
 			e.fillInStackTrace();
 		}
-		
 		return true;
 	}
 	
-	/* Utilizar a main para realizar testes na inserção.
-	 public static void main(String[] args) throws ArquivoException
+	// Utilizar a main para realizar testes na inserção.
+	/* public static void main(String[] args) throws ArquivoException
 	{
-		String a[] = {-- Insira as sílabas -- };
-		String p[] = {-- Insira as sílabas adicionais -- };
+		String palavra[] = {"as", "so", "ci", "a", "ção"};
+		String extras[] =  {"si", "ga", "col"};
+		Niveis n = Niveis.NIVEL3;
 		
-		Niveis nivel = Niveis.NIVEL2;
-		try {
-			ManipulaArquivo ma = new ManipulaArquivo(nivel);
-			//ma.inserePalavra(a, p);
-				
-			
+		try
+		{
+			ManipulaArquivo ma = new ManipulaArquivo(n);
+			ma.inserePalavra(palavra, extras);
+			//for(int i = 0; i < 5; i++)
+				System.out.println(ma.recebePalavra().toString());
 		}catch(ArquivoException e)
 		{
 			e.getMessage();
 			e.fillInStackTrace();
 		}
-			
 	}*/
 }
