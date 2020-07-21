@@ -8,7 +8,7 @@ import java.util.Queue;
 
 import exception.ArquivoException;  
 
-public class ManipulaArquivo {
+public class ManipulaSilabas {
 		
 	static int indices[];   // Armazena os índices de busca, referente a cada número de sílabas.
 	static int numPalavras; // Armazena o número de palavras salvas no arquivo.
@@ -19,7 +19,7 @@ public class ManipulaArquivo {
 	private int tamanhoCabecalho;
 	private Random r;
 	
-	public ManipulaArquivo(Niveis nivel) throws ArquivoException
+	public ManipulaSilabas(Niveis nivel) throws ArquivoException
 	{
 		File dados;
 		dificuldade = nivel;

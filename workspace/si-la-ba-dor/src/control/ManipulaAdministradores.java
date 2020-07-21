@@ -6,12 +6,12 @@ import java.io.IOException;
 
 import exception.OperacoesException;
 
-public class OperacoesArquivo {
+public class ManipulaAdministradores {
 	private String dadoArq;
 	
 	public boolean verificarAdmistrador(String nome) throws OperacoesException {
 		try {
-			if (nome.equals("")) throw new OperacoesException("Nome não preenchido.");
+			if (nome.equals("")) throw new OperacoesException("Nome nï¿½o preenchido.");
 			
 			FileReader arq = new FileReader("administradores.txt");
 			BufferedReader lerArq = new BufferedReader(arq);

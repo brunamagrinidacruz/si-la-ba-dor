@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.ManipulaArquivo;
+import control.ManipulaSilabas;
 import control.Niveis;
 import exception.ArquivoException;
 import model.Jogador;
@@ -56,10 +56,10 @@ public class Jogo extends JFrame {
 		this.usuario = (Jogador) usuario;
 		this.nivel = nivel;
 		
-		ManipulaArquivo manipulaArquivo = null;
+		ManipulaSilabas manipulaArquivo = null;
 		
 		try {
-			manipulaArquivo = new ManipulaArquivo(nivel);
+			manipulaArquivo = new ManipulaSilabas(nivel);
 		} catch (ArquivoException e) {
 			e.printStackTrace();
 		}

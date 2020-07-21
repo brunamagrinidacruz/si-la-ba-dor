@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.Niveis;
-import control.OperacoesArquivo;
+import control.ManipulaAdministradores;
 import exception.OperacoesException;
 import model.Administrador;
 import model.Jogador;
@@ -111,7 +111,7 @@ public class Menu extends JFrame {
 					return;
 				}
 				
-				OperacoesArquivo operacoesArquivo = new OperacoesArquivo();
+				ManipulaAdministradores operacoesArquivo = new ManipulaAdministradores();
 				boolean administrador = false;
 				try {
 					administrador = operacoesArquivo.verificarAdmistrador(txtName.getText());
