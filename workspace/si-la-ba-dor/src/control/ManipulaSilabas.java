@@ -19,6 +19,8 @@ public class ManipulaSilabas {
 	private int tamanhoCabecalho;
 	private Random r;
 	
+	private String dado;
+	
 	public ManipulaSilabas(Niveis nivel) throws ArquivoException
 	{
 		File dados;
@@ -117,14 +119,13 @@ public class ManipulaSilabas {
 		if(nomeArquivo == null) return null;
 		
 		Palavra nova = null;     // Contem o objeto "palavra" a ser retornado.
-		File dados = new File(nomeArquivo);	
+		File dados = new File(nomeArquivo);
 		int palavraEscolhida; 	 // Variável que armazenará quantas linhas deverão ser puladas para chegar a palavra escolhida aleatoriamente.
 
-		
 		if(numSilabas < 2 || numSilabas > 7) return null;
 		
 		try(FileReader fr = new FileReader(dados);
-				BufferedReader br = new BufferedReader(fr)){
+			BufferedReader br = new BufferedReader(fr)){
 			
 			// Pula o cabeçalho:
 			for(int i = 0; i < tamanhoCabecalho; i++)
@@ -138,8 +139,7 @@ public class ManipulaSilabas {
 			else palavraEscolhida = (indices[silabas+1] - indices[silabas]);
 			
 			// Define, aleatoriamente, quantas linhas deverão ser puladas para escolher uma palavra.
-			do
-			{
+			do {
 				palavraEscolhida = r.getIntRand(palavraEscolhida);
 				contador++;
 			} while(cache.contains(palavraEscolhida) == true && contador < 5);
@@ -151,18 +151,22 @@ public class ManipulaSilabas {
 			for(int i = 0; i < palavraEscolhida; i++)
 				br.readLine();
 			
-			// Instancia o objeto a ser retornado.
-			nova = new Palavra(br.readLine().toCharArray(), numSilabas);
+			dado = br.readLine();
 			
 			br.close();
-		}catch(ArquivoException e)
-		{
+			
+			// Instancia o objeto a ser retornado.
+			nova = new Palavra(dado.toCharArray(), numSilabas);
+			
+		} catch(ArquivoException e) {
 			e.getMessage();
 			e.fillInStackTrace();
-		}catch(IOException e)
-		{
+		} catch(IOException e) {
 			e.fillInStackTrace();
 		}
+		
+		System.out.println(dado);
+		System.out.println("nova: " + nova);
 		
 		return nova;
 	}
@@ -226,7 +230,7 @@ public class ManipulaSilabas {
 		try(FileReader fr = new FileReader(dados);
 				FileWriter fw = new FileWriter(novo);
 				BufferedReader br = new BufferedReader(fr);
-				BufferedWriter bw = new BufferedWriter(fw)){
+				BufferedWriter bw = new BufferedWriter(fw)) {
 			
 			/*!<Atualiza o cabeçalho do arquivo.*/
 			numPalavras = Integer.parseInt(br.readLine());

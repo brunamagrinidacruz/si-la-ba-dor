@@ -41,7 +41,7 @@ public class Jogo extends JFrame {
 	/*!< Representa as silabas na tela */
 	JLabel silabasNaTela[];
 	/*!< Representa o número de silabas que a pessoa colocou na tela. Este valor não pode ultrapassar o número de silabas da palavra */
-	private int numeroSilabasNaTela = 0; 
+	private int numeroSilabasNaTela = 0;
 	
 	private final int ESPACAMENTO = 200;
 
@@ -64,7 +64,8 @@ public class Jogo extends JFrame {
 			e.printStackTrace();
 		}
 		
-		this.palavra = manipulaArquivo.recebePalavra();		
+		this.palavra = manipulaArquivo.recebePalavra();
+		//System.out.println(palavra.toString());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 363);	

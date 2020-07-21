@@ -10,14 +10,18 @@ public class Palavra {
 	
 	String   silabasConcatenadas; // Armazena as silabas da palavra concatenadas, ou seja, a palavra.
 	String[] silabasPalavra;    // Armazenará, em ordem, as silabas que constituem as palavras.
+	String[] silabasAdicionais; // Armazenará as sílabas que não farão parte da palara.
+	String[] silabasCompleto; //Armazena todas as silabas em ordem aleatória.
 	int numSilabas;   		    // Armazenará o número de sílabas.
 	int numTotalSilabas;   		// Armazenará o número de total de sílabas contando com as silabas adicionais.
 	int numLetras;				// Armazena o número de letras na Palavra.
-	String[] silabasAdicionais; // Armazenará as sílabas que não farão parte da palara.
-	String[] silabasCompleto; //Armazena todas as silabas em ordem aleatória.
 	
 	public Palavra (char[] linha, int silabas)	throws ArquivoException
 	{
+		for (int i = 0; i < linha.length; i++)
+			System.out.print(linha[i]);
+		System.out.print("\n");
+		
 		/*
 		 *   	Método para inicializar o objeto, o vetor "linha" corresponde a uma linha do arquivo.
 		 */
@@ -55,7 +59,6 @@ public class Palavra {
 				throw new ArquivoException("O número de sílabas fornecido é menor que o número de sílabas da palavra lida no arquivo.\n Linha: " + String.valueOf(linha) + "\n NumSilabas fornecido: " + silabas);
 			if(i < numSilabas - 1 && linha[contador] == ' ')
 				throw new ArquivoException("O número de sílabas fornecido é maior que o número de sílabas da palavra lida no arquivo.\n Linha: " + String.valueOf(linha) + "\n NumSilabas fornecido: " + silabas);
-			
 			
 			silabasPalavra[i]    = new String(linha, inicioSilaba, contador - inicioSilaba);
 			silabasConcatenadas += silabasPalavra[i];
