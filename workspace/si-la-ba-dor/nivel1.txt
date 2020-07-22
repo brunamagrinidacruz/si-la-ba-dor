@@ -1,13 +1,13 @@
-35
+34
 0
-16
+15
 pa-to va lo sim se
 ca-sa sa pu za am
 fa-ca cam pu za am
 cam-po fa ca tri ru
 cin-to lho ti pla cor
 por-ta ti li sam com
-co-po fa r la si
+co-po fa a la si
 tor-ta ti lham ci pi
 ban-co bam tro la ta
 ti-gre gro ca ri o
@@ -16,23 +16,23 @@ bo-la bom tram le i
 bol-sa bou ca sim pra
 da-do du ta a si
 mar-lon fe liz ma gri
-co-la ca sa men to
 ar-vo-re se po lham
 to-ma-te ca ri sim
-ca-be-Ã§a te cam al
+ca-be-ça te cam al
 pol-tro-na ca ti som
 ca-cho-rro lha a tu
 ca-ne-ca si pram o
-chi-ne-lo li to
+chi-ne-lo li to pra
 pa-re-de le co pri
 to-ma-da ti lha o
 ce-lu-lar se pra ca
 co-zi-nha si na a
 to-a-lha tu o pa
-pa-lha-Ã§o lia so co
+pa-lha-ço lia so co
 ja-ne-la co mi jam
 ca-der-no de cam pro
 pa-la-vra ba tim a
 co-e-lho me tim a
 ca-va-lo co tu pro
+ba-ta-ta cha co la
 .
