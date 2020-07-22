@@ -131,9 +131,8 @@ public class ManipulaSilabas {
 			for(int i = 0; i < tamanhoCabecalho; i++)
 				br.readLine();
 			// Agora devemos, ou não, pular as linhas no arquivo para chegar no numero de silabas solicitado.
-			for(int i = 0; i < indices[silabas] - 1; i++)
+			for(int i = 0; i < indices[silabas]; i++)
 				br.readLine();
-
 			// Atribui, a variável palavraEscolhida, o número de palavras com a quantidade e sílabas escolhida
 			if(silabas == indices.length - 1) palavraEscolhida = (numPalavras -indices[silabas]);
 			else palavraEscolhida = (indices[silabas+1] - indices[silabas]);
@@ -143,7 +142,7 @@ public class ManipulaSilabas {
 				palavraEscolhida = r.getIntRand(palavraEscolhida);
 				contador++;
 			} while(cache.contains(palavraEscolhida) == true && contador < 5);
-			
+
 			// Insere na Cache a palavra escolhida.
 			atualizaCache(palavraEscolhida);
 			
@@ -152,9 +151,7 @@ public class ManipulaSilabas {
 				br.readLine();
 			
 			dado = br.readLine();
-			
 			br.close();
-			
 			// Instancia o objeto a ser retornado.
 			nova = new Palavra(dado.toCharArray(), numSilabas);
 			
@@ -163,11 +160,7 @@ public class ManipulaSilabas {
 			e.fillInStackTrace();
 		} catch(IOException e) {
 			e.fillInStackTrace();
-		}
-		
-		System.out.println(dado);
-		System.out.println("nova: " + nova);
-		
+		}	
 		return nova;
 	}
 
@@ -254,7 +247,7 @@ public class ManipulaSilabas {
 			}
 			
 			if(posicaoIndice == indices.length - 1)
-				numLinhasPuladas = numPalavras - indices[posicaoIndice];
+				numLinhasPuladas = numPalavras - indices[posicaoIndice] - 1;
 			else
 				numLinhasPuladas = indices[posicaoIndice + 1] - 1 - indices[posicaoIndice];
 
@@ -272,7 +265,6 @@ public class ManipulaSilabas {
 						contador++;
 					silabaLida = new String(linha, inicioSilaba, contador - inicioSilaba);
 					contador++;
-
 					if(silabaLida.equals(silabas[j]) == false)
 					{
 						silabasIguais = false;
@@ -308,6 +300,7 @@ public class ManipulaSilabas {
 			{
 				bw.write(br.readLine()); bw.newLine();
 			}
+			bw.write(br.readLine());
 			/*< Fecha, deleta, e renomeia os arquivos*/
 			br.close();
 			bw.close();
@@ -321,22 +314,29 @@ public class ManipulaSilabas {
 	}
 	
 	// Utilizar a main para realizar testes na inserção.
-	/* public static void main(String[] args) throws ArquivoException
+	/*public static void main(String[] args) throws ArquivoException
 	{
-		String palavra[] = {"as", "so", "ci", "a", "ção"};
-		String extras[] =  {"si", "ga", "col"};
+		String palavra[] = {"di", "ver", "g�n", "ci", "a"};
+		String extras[] =  {"de", "si", "lhem"};
 		Niveis n = Niveis.NIVEL3;
+		ManipulaSilabas ma = null;
+		Palavra recebida = null;
 		
 		try
 		{
-			ManipulaArquivo ma = new ManipulaArquivo(n);
-			ma.inserePalavra(palavra, extras);
-			//for(int i = 0; i < 5; i++)
-				System.out.println(ma.recebePalavra().toString());
+			ma = new ManipulaSilabas(n);
+			if(ma.inserePalavra(palavra, extras) == true) System.out.println("Inseriu!");
+			else System.out.println("N�o inseriu!");
 		}catch(ArquivoException e)
 		{
 			e.getMessage();
 			e.fillInStackTrace();
+		}
+		
+		for(int i = 0; i < 30; i++)
+		{
+			do { recebida = ma.recebePalavra();} while(recebida == null);
+			System.out.println(recebida.getPalavra());
 		}
 	}*/
 }
