@@ -67,41 +67,44 @@ public class Menu extends JFrame {
 		ImageIcon img = new ImageIcon("assets/background_menu_silabador.png");
 
 		JComboBox<Object> cbLevel = new JComboBox<Object>(levels);
-		cbLevel.setForeground(new Color(0, 0, 128));
+		cbLevel.setBackground(new Color(255, 215, 0));
+		cbLevel.setForeground(new Color(255, 69, 0));
 		cbLevel.setFont(new Font("Cooper Black", Font.BOLD, 30));
-		cbLevel.setBounds(577, 366, 235, 53);
+		cbLevel.setBounds(520, 383, 235, 53);
 		cbLevel.setSelectedIndex(0);
 		contentPane.add(cbLevel);
 		
 		JLabel lblSi = new JLabel("SI-LA-BA-DOR");
 		lblSi.setForeground(new Color(0, 0, 128));
 		lblSi.setFont(new Font("Cooper Black", Font.BOLD, 80));
-		lblSi.setBounds(318, 13, 685, 191);
+		lblSi.setBounds(330, 11, 685, 191);
 		contentPane.add(lblSi);
 		
 	    JTextField txtName = new JTextField();
+	    txtName.setForeground(new Color(0, 0, 128));
 		txtName.setBackground(Color.WHITE);
 		txtName.setFont(new Font("Cooper Black", Font.BOLD, 40));
 		txtName.setToolTipText("Seu nome");
-		txtName.setBounds(555, 285, 305, 45);
+		txtName.setBounds(645, 290, 305, 45);
 		contentPane.add(txtName);
 		txtName.setColumns(10);
 		txtName.setFocusable(true);
 		
 		JLabel lblDigiteSeuNome = new JLabel("Digite seu nome:");
-		lblDigiteSeuNome.setForeground(new Color(0, 0, 128));
+		lblDigiteSeuNome.setForeground(new Color(255, 69, 0));
 		lblDigiteSeuNome.setBackground(new Color(240, 240, 240));
 		lblDigiteSeuNome.setFont(new Font("Cooper Black", Font.BOLD, 30));
-		lblDigiteSeuNome.setBounds(253, 277, 350, 66);
+		lblDigiteSeuNome.setBounds(330, 282, 305, 66);
 		contentPane.add(lblDigiteSeuNome);
 		
 		JLabel lblBemVindo = new JLabel("Seja bem-vindo(a)!");
-		lblBemVindo.setForeground(new Color(0, 0, 128));
+		lblBemVindo.setForeground(new Color(255, 69, 0));
 		lblBemVindo.setFont(new Font("Cooper Black", Font.BOLD, 40));
-		lblBemVindo.setBounds(425, 216, 435, 72);
+		lblBemVindo.setBounds(416, 150, 435, 72);
 		contentPane.add(lblBemVindo);
 		
 		JButton btnPlay = new JButton("Jogar");
+		btnPlay.setBackground(new Color(255, 215, 0));
 		btnPlay.setForeground(new Color(0, 0, 128));
 		btnPlay.setFont(new Font("Cooper Black", Font.PLAIN, 40));
 		btnPlay.addActionListener(new ActionListener() {
@@ -150,7 +153,7 @@ public class Menu extends JFrame {
 			}
 		});
 		
-		btnPlay.setBounds(606, 539, 194, 66);
+		btnPlay.setBounds(544, 559, 194, 66);
 		contentPane.add(btnPlay);
 		
 		background = new JLabel("", img,JLabel.CENTER);

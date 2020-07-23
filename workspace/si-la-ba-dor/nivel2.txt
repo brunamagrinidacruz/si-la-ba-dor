@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-10
-=======
 12
->>>>>>> 4f5866c582c4697bd59462dc79f40104467b5ba0
 0
 2
 7
@@ -12,12 +8,6 @@ ca-sa sa pu za am
 to-ma-te to ri sim
 ca-be-ça te cam al
 co-me-ta pra ga cram
-<<<<<<< HEAD
-do-min-go sa ba do
-te-le-fo-ne bre pa
-en-fra-que-cer ser em
-cho-co-la-te xo ga
-=======
 am-pa-ro an sim lhem
 te-le-fo-ne bre pa
 en-fra-que-cer ser em
@@ -25,4 +15,3 @@ cho-co-la-te xo ga
 ven-ti-la-dor lha do
 co-mer-ci-al si au
 .
->>>>>>> 4f5866c582c4697bd59462dc79f40104467b5ba0

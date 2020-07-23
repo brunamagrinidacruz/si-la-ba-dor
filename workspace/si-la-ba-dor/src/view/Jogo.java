@@ -16,12 +16,14 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.SystemColor;
+
 
 public class Jogo extends JFrame {
 
@@ -41,20 +43,26 @@ public class Jogo extends JFrame {
 	/*!< Representa as silabas na tela */
 	JLabel silabasNaTela[];
 	/*!< Representa o nÃºmero de silabas que a pessoa colocou na tela. Este valor nÃ£o pode ultrapassar o nÃºmero de silabas da palavra */
-	private int numeroSilabasNaTela = 0;
+	private int numeroSilabasNaTela = 0; 
 	
-	private final int ESPACAMENTO = 200;
+	private final int ESPACAMENTO = 250;
 
-	private int xProximoBotao = 100;
+	private int xProximoBotao = 350;
+	private int xProximoBotaoBaixo = 350;
 	private int xProximaSilaba = 67;
 	private int xProximaBarra = 65;
 	
-//	private JLabel background;
+	
 	
 	public Jogo(JFrame menu, Usuario usuario, Niveis nivel){
 		this.menu = menu;
 		this.usuario = (Jogador) usuario;
 		this.nivel = nivel;
+		JLabel imagem1;
+		JLabel imagem2;
+		
+		ImageIcon img = new ImageIcon("assets/imagem1_tela_jogo.png");
+		ImageIcon img2 = new ImageIcon("assets/imagem2_tela_jogo.png");
 		
 		ManipulaSilabas manipulaArquivo = null;
 		
@@ -64,9 +72,7 @@ public class Jogo extends JFrame {
 			e.printStackTrace();
 		}
 		
-		this.palavra = manipulaArquivo.recebePalavra();
-		//System.out.println(palavra.toString());
-		
+		this.palavra = manipulaArquivo.recebePalavra();		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 363);	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,23 +82,24 @@ public class Jogo extends JFrame {
 		contentPane = new JPanel();
 		
 		//contentPane.setLayout(new BorderLayout());
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setForeground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		inicializarSilabas();
+		contentPane.setLayout(null);
 		
 		JLabel lblNivel = new JLabel("Nivel: " + this.nivel.getNivel());
 
 		lblNivel.setForeground(new Color(0, 0, 128));
 		lblNivel.setFont(new Font("Cooper Black", Font.PLAIN, 20));
-		lblNivel.setBounds(29, 8, 113, 40);
+		lblNivel.setBounds(41, 27, 78, 24);
 		contentPane.add(lblNivel);
 		
 		JLabel lblJogador = new JLabel("Jogador: " + usuario.getNome());
 		lblJogador.setForeground(new Color(0, 0, 128));
 		lblJogador.setFont(new Font("Dialog", Font.PLAIN, 20));
-		lblJogador.setBounds(143, 8, 134, 40);
+		lblJogador.setBounds(410, 72, 802, 71);
 //		contentPane.add(lblJogador);
 				
 		lblJogador.setFont(new Font("Cooper Black", Font.PLAIN, 50));
@@ -100,16 +107,21 @@ public class Jogo extends JFrame {
 		contentPane.add(lblJogador);
 
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setBackground(new Color(255, 215, 0));
+		btnVoltar.setForeground(new Color(255, 69, 0));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				voltarParaMenu();
 			}
 		});
-		btnVoltar.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnVoltar.setBounds(1013, 17, 94, 24);
+		btnVoltar.setFont(new Font("Cooper Black", Font.BOLD, 20));
+		btnVoltar.setBounds(1141, 11, 115, 28);
 		contentPane.add(btnVoltar);
 		
-		JButton btnLimparSilabas = new JButton("Limpar sÃ­labas");
+		JButton btnLimparSilabas = new JButton("Limpar sílabas");
+		btnLimparSilabas.setBackground(new Color(255, 215, 0));
+		btnLimparSilabas.setFont(new Font("Cooper Black", Font.PLAIN, 22));
+		btnLimparSilabas.setForeground(new Color(255, 69, 0));
 		btnLimparSilabas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for(int i = 0; i < numeroSilabasNaTela; i++) {
@@ -124,20 +136,31 @@ public class Jogo extends JFrame {
 				repaint();
 			}
 		});
-		btnLimparSilabas.setBounds(921, 608, 220, 25);
+		btnLimparSilabas.setBounds(900, 10, 231, 29);
 		contentPane.add(btnLimparSilabas);
 		
-		JLabel lblPontuao = new JLabel("Pontua\u00E7\u00E3o: " + this.usuario.getPontuacao());
-		lblPontuao.setFont(new Font("Dialog", Font.PLAIN, 20));
+		JLabel lblPontuao = new JLabel("Pontuação: " + this.usuario.getPontuacao());
+		lblPontuao.setForeground(new Color(255, 69, 0));
+		lblPontuao.setBounds(145, 26, 155, 26);
+		lblPontuao.setFont(new Font("Cooper Black", Font.PLAIN, 20));
 		contentPane.add(lblPontuao);
+		
+		imagem1 = new JLabel("", img, JLabel.CENTER);
+		imagem2 = new JLabel("", img2, JLabel.CENTER);
+		
+		imagem1.setBounds(0, 0, 1256, 670);
+		imagem2.setBounds(120, 0, 1144, 670);
+		
+		contentPane.add(imagem1);
+		contentPane.add(imagem2);
 //		background.add(btnLimparSilabas);
 		
 		lblMensagem = new JLabel("");
 		lblMensagem.setForeground(SystemColor.activeCaption);
 		lblMensagem.setFont(new Font("Dialog", Font.PLAIN, 20));
-		lblMensagem.setBounds(411, 44, 477, 40);
-		contentPane.add(lblMensagem);
-			
+		lblMensagem.setBounds(1111, 39, 0, 0);
+		
+	
 	}
 	
 	
@@ -164,7 +187,26 @@ public class Jogo extends JFrame {
 			btnSilaba.setBackground(new Color(0, 0, 128));
 			btnSilaba.setForeground(new Color(255, 204, 102));
 			btnSilaba.setFont(new Font("Cooper Black", Font.PLAIN, 40));
-			btnSilaba.setBounds(xProximoBotao, 199, 141, 89);
+			
+			if(palavra.getNumTotalSilabas() > 6) {
+				if (i < 4) {
+					btnSilaba.setBounds(xProximoBotao, 199, 141, 89);
+				}
+				else {
+					btnSilaba.setBounds(xProximoBotaoBaixo, 299, 141, 89);
+					xProximoBotaoBaixo += 150;
+				}
+			}
+			
+			if(palavra.getNumTotalSilabas() < 7) {
+				if (i < 3) {
+					btnSilaba.setBounds(xProximoBotao, 199, 141, 89);
+				}
+				else {
+					btnSilaba.setBounds(xProximoBotaoBaixo, 299, 141, 89);
+					xProximoBotaoBaixo += 150;
+				}
+			}
 			contentPane.add(btnSilaba);
 
 			btnSilaba.addActionListener(new ActionListener() {
@@ -222,7 +264,7 @@ public class Jogo extends JFrame {
 		for(int i = 0; i < palavra.getNumSilabas(); i++) {
 			JLabel lblBarra = new JLabel();
 			lblBarra.setText("________");			
-			lblBarra.setForeground(Color.BLACK);
+			lblBarra.setForeground(new Color(0, 0, 128));
 			lblBarra.setFont(new Font("Dialog", Font.PLAIN, 25));
 			lblBarra.setBounds(xProximaBarra, 550, 997, 141);
 			contentPane.add(lblBarra);
@@ -238,9 +280,9 @@ public class Jogo extends JFrame {
 	 **/
 	private void adicionarSilaba(String silaba) {
 		JLabel lblSilaba = new JLabel(silaba);
-		lblSilaba.setForeground(Color.ORANGE);
-		lblSilaba.setFont(new Font("Cooper Black", Font.PLAIN, 32));
-		lblSilaba.setBounds(xProximaSilaba+7, 586, 348, 55);
+		lblSilaba.setForeground(new Color(0, 0, 128));
+		lblSilaba.setFont(new Font("Cooper Black", Font.PLAIN, 40));
+		lblSilaba.setBounds(xProximaSilaba+20, 586, 348, 55);
 		silabasNaTela[numeroSilabasNaTela] = lblSilaba;
 		numeroSilabasNaTela++;
 		this.xProximaSilaba = this.xProximaSilaba + ESPACAMENTO;
@@ -256,5 +298,4 @@ public class Jogo extends JFrame {
 		}
 		repaint();
 	}
-	
 }
