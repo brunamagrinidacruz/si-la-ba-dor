@@ -198,6 +198,7 @@ public class InserirPalavra extends JFrame {
 			botaoSilaba.setBackground(new Color(255, 215, 0));
 			botaoSilaba.setForeground(new Color(255, 69, 0));
 			botaoSilaba.setFont(new Font("Cooper Black", Font.PLAIN, 20));
+		
 			botaoSilaba.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					silabas.remove(silaba);

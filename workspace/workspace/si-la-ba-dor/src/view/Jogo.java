@@ -53,10 +53,16 @@ public class Jogo extends JFrame {
 	private int xProximaBarra = 65;
 	
 	
+	
 	public Jogo(JFrame menu, Usuario usuario, Niveis nivel){
 		this.menu = menu;
 		this.usuario = (Jogador) usuario;
 		this.nivel = nivel;
+		JLabel imagem1;
+		JLabel imagem2;
+		
+		ImageIcon img = new ImageIcon("assets/imagem1_tela_jogo.png");
+		ImageIcon img2 = new ImageIcon("assets/imagem2_tela_jogo.png");
 		
 		ManipulaArquivo manipulaArquivo = null;
 		
@@ -138,6 +144,15 @@ public class Jogo extends JFrame {
 		lblPontuao.setBounds(145, 26, 155, 26);
 		lblPontuao.setFont(new Font("Cooper Black", Font.PLAIN, 20));
 		contentPane.add(lblPontuao);
+		
+		imagem1 = new JLabel("", img, JLabel.CENTER);
+		imagem2 = new JLabel("", img2, JLabel.CENTER);
+		
+		imagem1.setBounds(0, 0, 1256, 670);
+		imagem2.setBounds(120, 0, 1144, 670);
+		
+		contentPane.add(imagem1);
+		contentPane.add(imagem2);
 //		background.add(btnLimparSilabas);
 		
 		lblMensagem = new JLabel("");
@@ -173,12 +188,24 @@ public class Jogo extends JFrame {
 			btnSilaba.setForeground(new Color(255, 204, 102));
 			btnSilaba.setFont(new Font("Cooper Black", Font.PLAIN, 40));
 			
-			if (i < 4) {
-				btnSilaba.setBounds(xProximoBotao, 199, 141, 89);
+			if(palavra.getNumTotalSilabas() > 6) {
+				if (i < 4) {
+					btnSilaba.setBounds(xProximoBotao, 199, 141, 89);
+				}
+				else {
+					btnSilaba.setBounds(xProximoBotaoBaixo, 299, 141, 89);
+					xProximoBotaoBaixo += 150;
+				}
 			}
-			else {
-				btnSilaba.setBounds(xProximoBotaoBaixo, 299, 141, 89);
-				xProximoBotaoBaixo += 150;
+			
+			if(palavra.getNumTotalSilabas() < 7) {
+				if (i < 3) {
+					btnSilaba.setBounds(xProximoBotao, 199, 141, 89);
+				}
+				else {
+					btnSilaba.setBounds(xProximoBotaoBaixo, 299, 141, 89);
+					xProximoBotaoBaixo += 150;
+				}
 			}
 			contentPane.add(btnSilaba);
 
@@ -271,5 +298,4 @@ public class Jogo extends JFrame {
 		}
 		repaint();
 	}
-	
 }
