@@ -18,10 +18,6 @@ public class Palavra {
 	
 	public Palavra (char[] linha, int silabas)	throws ArquivoException
 	{
-		for (int i = 0; i < linha.length; i++)
-			System.out.print(linha[i]);
-		System.out.print("\n");
-		
 		/*
 		 *   	Método para inicializar o objeto, o vetor "linha" corresponde a uma linha do arquivo.
 		 */
@@ -38,12 +34,12 @@ public class Palavra {
 		// Variável que armazena a soma do numero de sílabas, constituintes ou não, da palavra.
 		if(silabas >= 5) numTotalSilabas = 8;
 		else numTotalSilabas = 6;
-		
+
 		numSilabas = silabas;
 		silabasConcatenadas = "";
 		silabasPalavra = new String[numSilabas];
 		silabasAdicionais = new String[numTotalSilabas - numSilabas];
-		
+
 		int contador = 0;
 		int inicioSilaba; // Servira para armazenar em qual índice da palvra a sílaba começará
 		
@@ -69,16 +65,16 @@ public class Palavra {
 					
 		// Variável utilizada para impedir overflow no vetor "linhas".
 		int tamanho = linha.length;
-		
+
 		// O Laço abaixo é análogo ao anterior, porém servirá para armazenar as Sílabas que não constituem a palavra
 		for(int i = 0; i < (numTotalSilabas-numSilabas); i++)
 		{
 			inicioSilaba = contador;
 			
-			while(contador != (tamanho-1) && linha[contador] != ' ')
+			while(contador < tamanho-1 && contador != (tamanho-1) && linha[contador] != ' ')
 				contador++;
 			
-			if(contador == tamanho-1) contador++;				
+			if(contador == tamanho-1) contador++;
 			silabasAdicionais[i] = new String(linha, inicioSilaba, contador - inicioSilaba);
 			contador++;
 		}
@@ -116,7 +112,6 @@ public class Palavra {
 				silabasCompleto[i] = new String(silabasAdicionais[indexSilabasAdicionais]);
 				indexSilabasAdicionais++;
 			}
-		
 		}
 	}
 	
