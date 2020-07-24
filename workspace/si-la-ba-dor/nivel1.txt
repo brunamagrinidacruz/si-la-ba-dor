@@ -1,6 +1,6 @@
-34
+36
 0
-15
+16
 pa-to va lo sim se
 ca-sa sa pu za am
 fa-ca cam pu za am
@@ -16,6 +16,7 @@ bo-la bom tram le i
 bol-sa bou ca sim pra
 da-do du ta a si
 mar-lon fe liz ma gri
+car-ro si fa do le
 ár-vo-re se po lham
 to-ma-te ca ri sim
 ca-be-ça te cam al
@@ -35,4 +36,5 @@ pa-la-vra ba tim a
 co-e-lho me tim a
 ca-va-lo co tu pro
 ba-ta-ta cha co la
+isa-do-ra ba ta ta
 .
