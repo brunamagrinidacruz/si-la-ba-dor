@@ -45,7 +45,7 @@ public class Jogo extends JFrame {
 	/*!< Representa o nÃºmero de silabas que a pessoa colocou na tela. Este valor nÃ£o pode ultrapassar o nÃºmero de silabas da palavra */
 	private int numeroSilabasNaTela = 0; 
 	
-	private final int ESPACAMENTO = 250;
+	private final int ESPACAMENTO = 180;
 
 	private int xProximoBotao = 350;
 	private int xProximoBotaoBaixo = 350;
@@ -118,7 +118,7 @@ public class Jogo extends JFrame {
 		btnVoltar.setBounds(1141, 11, 115, 28);
 		contentPane.add(btnVoltar);
 		
-		JButton btnLimparSilabas = new JButton("Limpar sílabas");
+		JButton btnLimparSilabas = new JButton("Limpar silabas");
 		btnLimparSilabas.setBackground(new Color(255, 215, 0));
 		btnLimparSilabas.setFont(new Font("Cooper Black", Font.PLAIN, 22));
 		btnLimparSilabas.setForeground(new Color(255, 69, 0));
@@ -139,7 +139,7 @@ public class Jogo extends JFrame {
 		btnLimparSilabas.setBounds(900, 10, 231, 29);
 		contentPane.add(btnLimparSilabas);
 		
-		JLabel lblPontuao = new JLabel("Pontuação: " + this.usuario.getPontuacao());
+		JLabel lblPontuao = new JLabel("Pontuacao: " + this.usuario.getPontuacao());
 		lblPontuao.setForeground(new Color(255, 69, 0));
 		lblPontuao.setBounds(145, 26, 155, 26);
 		lblPontuao.setFont(new Font("Cooper Black", Font.PLAIN, 20));

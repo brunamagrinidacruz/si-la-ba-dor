@@ -1,4 +1,4 @@
-36
+37
 0
 16
 pa-to va lo sim se
@@ -37,4 +37,5 @@ co-e-lho me tim a
 ca-va-lo co tu pro
 ba-ta-ta cha co la
 isa-do-ra ba ta ta
+ba-ca-ta la ca ta
 .

@@ -1,7 +1,7 @@
-13
+15
 0
 2
-7
+9
 pa-to va lo se sim
 ca-sa sa pu za am
 ár-vo-re se po lham
@@ -9,6 +9,8 @@ to-ma-te to ri sim
 ca-be-ça te cam al
 co-me-ta pra ga cram
 am-pa-ro an sim lhem
+ba-ta-ta po la ma
+ca-ne-ca ca bo ta
 te-le-fo-ne bre pa
 en-fra-que-cer ser em
 cho-co-la-te xo ga

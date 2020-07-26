@@ -34,9 +34,8 @@ public class InserirPalavra extends JFrame {
 	private int quantidadeDeSilabas;
 	/*!< Silabas das palavras presente na tela */
 	private List<JTextField> silabas;
-	private List<JButton> botoesSilabas;
 	
-	private Niveis nivel = Niveis.NIVEL1;
+	private Niveis nivel = null;
 	private int quantidadeDeSilabasExtras;
 	/*!< Silabas EXTRAS presente na tela */
 	private List<JTextField> silabasExtras;
@@ -52,7 +51,6 @@ public class InserirPalavra extends JFrame {
 		this.telaAnterior = telaAnterior;
 		
 		silabas = new ArrayList<JTextField>();
-		botoesSilabas = new ArrayList<JButton>();
 		
 		silabasExtras = new ArrayList<JTextField>();
 		
@@ -65,14 +63,14 @@ public class InserirPalavra extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		texto1 = new JLabel("Digite as sílabas:");
-		texto2 = new JLabel("Digite as sílabas extras:");
+		texto1 = new JLabel("Digite as silabas:");
+		texto2 = new JLabel("Digite as silabas extras:");
 		texto1.setForeground(new Color(0, 0, 128));
 		texto2.setForeground(new Color(0, 0, 128));
 		texto1.setFont(new Font("Cooper Black", Font.PLAIN, 18));
 		texto1.setBounds(500, 200, 300, 20);
 		texto2.setFont(new Font("Cooper Black", Font.PLAIN, 18));
-		texto2.setBounds(900, 200, 300, 20);
+		texto2.setBounds(700, 200, 300, 20);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setBackground(new Color(255, 215, 0));
@@ -87,17 +85,17 @@ public class InserirPalavra extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		JTextField txtQuantidadeSilabas = new JTextField();
-		txtQuantidadeSilabas.setBounds(200, 319, 200, 30);
+		txtQuantidadeSilabas.setBounds(200, 233, 200, 30);
 		txtQuantidadeSilabas.setFont(new Font("Cooper Black", Font.PLAIN, 18));
 		contentPane.add(txtQuantidadeSilabas);
 		txtQuantidadeSilabas.setColumns(10);
 		
-		String[] levels = {"Selecione um nível", "Nivel 1", "Nivel 2", "Nivel 3"};
+		String[] levels = {"Selecione um nivel", "Nivel 1", "Nivel 2", "Nivel 3"};
 		JComboBox<Object> cbLevel = new JComboBox<Object>(levels);
 		cbLevel.setBackground(new Color(255, 215, 0));
 		cbLevel.setForeground(new Color(255, 69, 0));
 		cbLevel.setFont(new Font("Cooper Black", Font.PLAIN, 18));
-		cbLevel.setBounds(200, 30, 300, 53);
+		cbLevel.setBounds(200, 273, 200, 53);
 		cbLevel.setSelectedIndex(0);
 		contentPane.add(cbLevel);
 		
@@ -117,7 +115,7 @@ public class InserirPalavra extends JFrame {
 		btnCriarSilabas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtQuantidadeSilabas.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Digite a quantidade de sílabas!", "", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Digite a quantidade de silabas!", "", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				
@@ -125,84 +123,89 @@ public class InserirPalavra extends JFrame {
 				try {
 					quantidadeDeSilabas = Integer.parseInt(txtQuantidadeSilabas.getText());
 				} catch (java.lang.NumberFormatException exception) {
-					JOptionPane.showMessageDialog(null, "Digite um valor numérico e inteiro.", "", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Digite um valor numerico e inteiro.", "", JOptionPane.ERROR_MESSAGE);
 					return;
 				} catch (Exception exception) {
-					JOptionPane.showMessageDialog(null, "A quantidade de sílabas digitada não é válida.", "", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "A quantidade de silabas digitada nao e valida.", "", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				
 				if(quantidadeDeSilabas <= 1 || quantidadeDeSilabas >= 6) {
-					JOptionPane.showMessageDialog(null, "Quantidade de sílabas inválida. Ela deve ser maior ou igual a 1 e menor ou igual a 6 .", "", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Quantidade de silabas invalida. Ela deve ser maior ou igual a 1 e menor ou igual a 6 .", "", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				if(nivel == null) {
+					JOptionPane.showMessageDialog(null, "Selecione um nivel.", "", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 								
 				int numeroMaxSilabas = 6;
 				if(nivel == Niveis.NIVEL3)
-					numeroMaxSilabas = 8; /*!< acima de 4 sílabas e será apresentado 8 sílabas para escolha */		
+					numeroMaxSilabas = 8; /*!< acima de 4 silabas e sera apresentado 8 silabas para escolha */		
 				
 				/**
-				 * Cada nível possui um número de sílabas de palavra máximo.
-				 * Nível 1: de 2 sílabas até 3.
-				 * Nivel 2: de 2 sílabas até 4.
-				 * Nivel 3: de 5 sílabas até 7.
-				 * Verificando se a quantidade de sílabas passada corresponde corretamente ao intervalo do nível selecionado.
+				 * Cada nivel possui um numero de silabas de palavra maximo.
+				 * Nï¿½vel 1: de 2 silabas ate 3.
+				 * Nivel 2: de 2 silabas ate 4.
+				 * Nivel 3: de 5 silabas ate 7.
+				 * Verificando se a quantidade de sï¿½labas passada corresponde corretamente ao intervalo do nï¿½vel selecionado.
 				 * */
 				switch(nivel) {
 					case NIVEL1:
 						if(quantidadeDeSilabas < 2 || quantidadeDeSilabas > 3) {
-							JOptionPane.showMessageDialog(null, "A quantidade de sílabas é inválida. Digite um número menor ou aumente o nível da palavra.", "", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "A quantidade de silabas e invalida. Digite um numero menor ou aumente o nivel da palavra.", "", JOptionPane.ERROR_MESSAGE);
 							cbLevel.setSelectedIndex(0);
 							return;
 						}
 						break;
 					case NIVEL2:
 						if(quantidadeDeSilabas < 2 || quantidadeDeSilabas > 4) {
-							JOptionPane.showMessageDialog(null, "A quantidade de sílabas é inválida. Digite um número menor ou aumente o nível da palavra.", "", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "A quantidade de silabas e invalida. Digite um numero menor ou aumente o nivel da palavra.", "", JOptionPane.ERROR_MESSAGE);
 							cbLevel.setSelectedIndex(0);
 							return;
 						}
 						break;
 					case NIVEL3:
 						if(quantidadeDeSilabas < 5 || quantidadeDeSilabas > 7) {
-							JOptionPane.showMessageDialog(null, "A quantidade de sílabas é inválida. Digite um número menor ou aumente o nível da palavra.", "", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "A quantidade de silabas e invalida. Digite um numero menor ou aumente o nivel da palavra.", "", JOptionPane.ERROR_MESSAGE);
 							cbLevel.setSelectedIndex(0);
 							return;
 						}
 						break;
 					default:
-						JOptionPane.showMessageDialog(null, "Selecione um nível.", "", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Selecione um nivel.", "", JOptionPane.ERROR_MESSAGE);
 						return;
 				}
 				
 				/**
-				 * A quantidade de sílabas total (silabas de palavra + silabas extra) tem um limite.
-				 * Aqui a quantidade de sílabas extra vai ser atualizada com base no tamanho da palavra a ser inserida.
-				 * Desta forma, ao somar a quantidade de sílabas de palavra + sílabas extra teremos a quantidade total de sílabas.
-				 * No nível 1 e 2: 6 sílabas serão mostradas na tela (sílabas de palavra e sílabas extra).
-				 * No nível 3: 8 sílabas serão mostradas na tela (sílabas de palavra e sílabas extra).
+				 * A quantidade de sï¿½labas total (silabas de palavra + silabas extra) tem um limite.
+				 * Aqui a quantidade de sï¿½labas extra vai ser atualizada com base no tamanho da palavra a ser inserida.
+				 * Desta forma, ao somar a quantidade de sï¿½labas de palavra + sï¿½labas extra teremos a quantidade total de sï¿½labas.
+				 * No nï¿½vel 1 e 2: 6 sï¿½labas serï¿½o mostradas na tela (sï¿½labas de palavra e sï¿½labas extra).
+				 * No nï¿½vel 3: 8 sï¿½labas serï¿½o mostradas na tela (sï¿½labas de palavra e sï¿½labas extra).
 				 **/
 				int quantidadeSilabasExtras = numeroMaxSilabas - quantidadeDeSilabas;
 				if(quantidadeSilabasExtras <= 0) {
-					JOptionPane.showMessageDialog(null, "A quantidade de sílabas é inválida. Digite um número menor ou aumente o nível da palavra.", "", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "A quantidade de silabas e invalida. Digite um numero menor ou aumente o nivel da palavra.", "", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				
-				/*!< Colocando os campos e botões da sílaba da palavra na tela */
+				/*!< Colocando os campos e botï¿½es da sï¿½laba da palavra na tela */
 				setQuantidadeDeSilabas(quantidadeDeSilabas);
 				criarSilabas();		
 				colocarSilabasNaTela();
 				
-				/*!< Colocando os campos da sílaba EXTRA na tela */
+				/*!< Colocando os campos da sï¿½laba EXTRA na tela */
 				setQuantidadeDeSilabasExtras(quantidadeSilabasExtras);
 				criarSilabasExtras();
 				colocarSilabasExtrasNaTela();
 			}
 		});
-		btnCriarSilabas.setBounds(200, 360, 200, 25);
+		btnCriarSilabas.setBounds(200, 351, 200, 25);
 		contentPane.add(btnCriarSilabas);
 		
-		/*!< Evento quando muda o nível selecionado */
+		/*!< Evento quando muda o nï¿½vel selecionado */
 		cbLevel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -211,7 +214,7 @@ public class InserirPalavra extends JFrame {
 		});
 		
 		JTextField txtPalavra = new JTextField();
-		txtPalavra.setBounds(200, 230, 200, 30);
+		txtPalavra.setBounds(200, 144, 200, 30);
 		txtPalavra.setFont(new Font("Cooper Black", Font.PLAIN, 18));
 		contentPane.add(txtPalavra);
 		txtPalavra.setColumns(10);
@@ -219,13 +222,13 @@ public class InserirPalavra extends JFrame {
 		JLabel lblPalavra = new JLabel("Digite a palavra completa:");
 		lblPalavra.setForeground(new Color(0, 0, 128));
 		lblPalavra.setFont(new Font("Cooper Black", Font.PLAIN, 18));
-		lblPalavra.setBounds(200, 200, 300, 15);
+		lblPalavra.setBounds(200, 114, 300, 25);
 		contentPane.add(lblPalavra);
 		
 		JLabel lblQuantidadeDeSilabas = new JLabel("Quantidade de silabas:");
 		lblQuantidadeDeSilabas.setForeground(new Color(0, 0, 128));
 		lblQuantidadeDeSilabas.setFont(new Font("Cooper Black", Font.PLAIN, 18));
-		lblQuantidadeDeSilabas.setBounds(200, 289, 401, 15);
+		lblQuantidadeDeSilabas.setBounds(200, 203, 401, 25);
 		contentPane.add(lblQuantidadeDeSilabas);
 		
 		JButton btnCadastrarNovaPalavra = new JButton("Cadastrar nova palavra");
@@ -241,16 +244,16 @@ public class InserirPalavra extends JFrame {
 				}
 				
 				if(txtQuantidadeSilabas.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Digite a quantidade de sílabas!", "", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Digite a quantidade de silabas!", "", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				
 				if(nivel == null) {
-					JOptionPane.showMessageDialog(null, "Selecione um nível.", "", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Selecione um nivel.", "", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				
-				/*!< Verificando se as silabas são válidas */
+				/*!< Verificando se as silabas sï¿½o vï¿½lidas */
 				if(!silabasSaoValidas(txtPalavra.getText())) 
 					return;
 				if(!silabasExtrasSaoValidas())
@@ -260,28 +263,18 @@ public class InserirPalavra extends JFrame {
 					String[] silabasPalavra = new String[silabas.size()];
 					String[] extras = new String[silabasExtras.size()];
 					
-					/*!< Criando o vetor com as sílabas da palavra */
+					/*!< Criando o vetor com as sï¿½labas da palavra */
 					for(int i = 0; i < silabas.size(); i++) 
 						silabasPalavra[i] = silabas.get(i).getText();
-					/*!< Criando o vetor com as sílabas EXTRAS */
+					/*!< Criando o vetor com as sï¿½labas EXTRAS */
 					for(int i = 0; i < silabasExtras.size(); i++) 
 						extras[i] = silabasExtras.get(i).getText();
-					
-					
-					
-					System.out.println("Silabas palavra:");
-					for(String silaba : silabasPalavra)
-						System.out.println(silaba);
-					
-					System.out.println("Silabas extras:");
-					for(String silaba : extras)
-						System.out.println(silaba);
 					
 					ManipulaSilabas manipulaSilabas = new ManipulaSilabas(nivel);
 					if(manipulaSilabas.inserePalavra(silabasPalavra, extras)) {
 						JOptionPane.showMessageDialog(null, "Palavra cadastrada com sucesso.", "", JOptionPane.INFORMATION_MESSAGE);
 						
-						/*!< Limpando os botões e campos de sílabas */
+						/*!< Limpando os botï¿½es e campos de sï¿½labas */
 						removerSilabaDaTela();
 						removerSilabaExtraDaTela();
 						
@@ -290,11 +283,11 @@ public class InserirPalavra extends JFrame {
 						txtQuantidadeSilabas.setText("");
 						cbLevel.setSelectedIndex(0);
 					} else {
-						JOptionPane.showMessageDialog(null, "Ocorreu um erro com a aplicação.", "", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "A palavra jÃ¡ estÃ¡ cadastrada.", "", JOptionPane.ERROR_MESSAGE);
 					}
 						
 				} catch (ArquivoException e) {
-					JOptionPane.showMessageDialog(null, "Ocorreu um erro com a aplicação.", "", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Ocorreu um erro com a aplicacao.", "", JOptionPane.ERROR_MESSAGE);
 					e.printStackTrace();
 				}
 					
@@ -306,7 +299,7 @@ public class InserirPalavra extends JFrame {
 		
 	}
 	
-	/*!< Método para retornar a página anterior */
+	/*!< Mï¿½todo para retornar a pï¿½gina anterior */
 	private void voltar() {
 		telaAnterior.setVisible(true);
 		dispose();
@@ -328,33 +321,32 @@ public class InserirPalavra extends JFrame {
 		}
 	}
 	
-	/*!< Método para setar a quantidade de silabas */
+	/*!< Mï¿½todo para setar a quantidade de silabas */
 	private void setQuantidadeDeSilabas(int quantidadeDeSilabas) {
 		this.quantidadeDeSilabas = quantidadeDeSilabas;
 	}
 	
-	/*!< Método para setar a quantidade de silabas EXTRAS */
+	/*!< Mï¿½todo para setar a quantidade de silabas EXTRAS */
 	private void setQuantidadeDeSilabasExtras(int quantidadeDeSilabasExtras) {
 		this.quantidadeDeSilabasExtras = quantidadeDeSilabasExtras;
 	}
 	
 	/**
-	 * Método responsável por limpar a tela.
-	 * Os JTextField de sílabas e os respectivos botões associados serão removidos da tela.
-	 * Além disso, os vetores de silabas e botões são limpos.
+	 * Mï¿½todo responsï¿½vel por limpar a tela.
+	 * Os JTextField de sï¿½labas e os respectivos botï¿½es associados serï¿½o removidos da tela.
+	 * Alï¿½m disso, os vetores de silabas e botï¿½es sï¿½o limpos.
 	 * */
 	private void removerSilabaDaTela() {
 		for(JTextField silaba : this.silabas) 
 			contentPane.remove(silaba);
-		for(JButton botao : this.botoesSilabas) 
-			contentPane.remove(botao);
 		this.silabas.clear();
-		this.botoesSilabas.clear();
+		contentPane.remove(texto1);
+		contentPane.remove(texto2);
 		repaint();
 	}
 	
 	/**
-	 *  Método responsável por criar os JTextField e os JButton associados.
+	 *  Mï¿½todo responsï¿½vel por criar os JTextField e os JButton associados.
 	 *	Armazena os objetos numa lista de JTextField e em uma de JButton.
 	 * */
 	private void criarSilabas() {
@@ -362,28 +354,13 @@ public class InserirPalavra extends JFrame {
 		for(int i = 0; i < this.quantidadeDeSilabas; i++) {
 			JTextField silaba = new JTextField();
 			silabas.add(silaba);
-			
-			JButton botaoSilaba = new JButton("Apagar sílaba");
-			botaoSilaba.setBackground(new Color(255, 215, 0));
-			botaoSilaba.setForeground(new Color(255, 69, 0));
-			botaoSilaba.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					silabas.remove(silaba);
-					botoesSilabas.remove(botaoSilaba);
-					contentPane.remove(silaba);
-					contentPane.remove(botaoSilaba);
-					colocarSilabasNaTela();
-					setQuantidadeDeSilabas(quantidadeDeSilabas - 1);
-				}
-			});
-			botoesSilabas.add(botaoSilaba);
 		}
 	}
 	
 
 	/**
-	 * Método responsável por colocar os JTextField e os JButton associados na tela.
-	 * Irá percorrer o vetor de sílabas e botões e adicionar ao contentPane.
+	 * Mï¿½todo responsï¿½vel por colocar os JTextField e os JButton associados na tela.
+	 * Irï¿½ percorrer o vetor de sï¿½labas e botï¿½es e adicionar ao contentPane.
 	 * */
 	private void colocarSilabasNaTela() {
 		contentPane.add(texto1);
@@ -396,44 +373,32 @@ public class InserirPalavra extends JFrame {
 			contentPane.add(silaba);
 			posicaoY += 35;
 		}
-		posicaoY = 230;
-		for(JButton botao : this.botoesSilabas) {
-			contentPane.remove(botao);
-			botao.setFont(new Font("Cooper Black", Font.PLAIN, 18));
-			botao.setBounds(650, posicaoY, 200, 30);
-			contentPane.add(botao);
-			posicaoY += 35;
-		}
 		repaint();
 	}
 	
 	/** 
-	 *  Método responsável por verificar se todas as silabas são válidas
+	 *  Mï¿½todo responsï¿½vel por verificar se todas as silabas sï¿½o vï¿½lidas
 	 *  Recebe como parametro a palavra 
 	 * */
 	private boolean silabasSaoValidas(String palavra) {
-		/*!< Se a quantidade de silabas é menor que 1 ou maior que 8, não é válido */
+		/*!< Se a quantidade de silabas ï¿½ menor que 1 ou maior que 8, nï¿½o ï¿½ vï¿½lido */
 		if(this.silabas.size() <= 1 || this.silabas.size() >= 8) {
-			JOptionPane.showMessageDialog(null, "Quantidade de sílabas inválida.", "", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Quantidade de silabas invalida.", "", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		
-		/*!< Se a quantidade de botões associados é diferente da quantidade de sílabas, algo deu errado */
-		if(this.botoesSilabas.size() != this.silabas.size())
-			return false;
-		
 		int quantidadeDeLetras = 0;
-		/*!< Verificando se alguma das sílabas é vazia */
+		/*!< Verificando se alguma das sï¿½labas ï¿½ vazia */
 		for(JTextField silaba : this.silabas) {
 			quantidadeDeLetras += silaba.getText().length();
 			if(silaba.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "Preencha todas as sílabas.", "", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Preencha todas as silabas.", "", JOptionPane.ERROR_MESSAGE);
 				return false;
 			}
 			
-			/*!< Verificando se a String só possui letras */
+			/*!< Verificando se a String sï¿½ possui letras */
 			if(!silaba.getText().matches("[a-zA-Z]+")) {
-				JOptionPane.showMessageDialog(null, "A sílaba só pode conter letras.", "", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "A silaba so pode conter letras.", "", JOptionPane.ERROR_MESSAGE);
 				return false;
 			}
 			
@@ -441,7 +406,7 @@ public class InserirPalavra extends JFrame {
 		
 		/*!< A palavra deve ter a mesma quantidade de letras que a silaba */
 		if(palavra.length() != quantidadeDeLetras) {
-			JOptionPane.showMessageDialog(null, "As sílabas e palavras não coincidem.", "", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "As silabas e palavras nao coincidem.", "", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 							
@@ -449,9 +414,9 @@ public class InserirPalavra extends JFrame {
 	}
 	
 	/**
-	 * Método responsável por limpar a tela.
-	 * Os JTextField de sílabas EXTRAS e os respectivos botões associados serão removidos da tela.
-	 * Além disso, os vetores de silabas e botões EXTRAS são limpos.
+	 * Mï¿½todo responsï¿½vel por limpar a tela.
+	 * Os JTextField de sï¿½labas EXTRAS e os respectivos botï¿½es associados serï¿½o removidos da tela.
+	 * Alï¿½m disso, os vetores de silabas e botï¿½es EXTRAS sï¿½o limpos.
 	 * */
 	private void removerSilabaExtraDaTela() {
 		for(JTextField silaba : this.silabasExtras) 
@@ -461,8 +426,8 @@ public class InserirPalavra extends JFrame {
 	}
 	
 	/**
-	 *  Método responsável por criar os JTextField e os JButton associados das sílabas EXTRAS.
-	 *  Nota: Sílabas extras são as sílabas que irão aparecer na tela além das sílabas da palavra.
+	 *  Mï¿½todo responsï¿½vel por criar os JTextField e os JButton associados das sï¿½labas EXTRAS.
+	 *  Nota: Sï¿½labas extras sï¿½o as sï¿½labas que irï¿½o aparecer na tela alï¿½m das sï¿½labas da palavra.
 	 *	Armazena os objetos numa lista de JTextField e em uma de JButton.
 	 * */
 	private void criarSilabasExtras() {		
@@ -477,14 +442,14 @@ public class InserirPalavra extends JFrame {
 	
 
 	/**
-	 * Método responsável por colocar os JTextField e os JButton associados na tela.
-	 * Irá percorrer o vetor de sílabas e botões EXTRAS e adicionar ao contentPane.
+	 * Mï¿½todo responsï¿½vel por colocar os JTextField e os JButton associados na tela.
+	 * Irï¿½ percorrer o vetor de sï¿½labas e botï¿½es EXTRAS e adicionar ao contentPane.
 	 * */
 	private void colocarSilabasExtrasNaTela() {
 		int posicaoY = 230;
 		for(JTextField silaba : this.silabasExtras) {
 			contentPane.remove(silaba);
-			silaba.setBounds(900, posicaoY, 200, 30);
+			silaba.setBounds(700, posicaoY, 200, 30);
 			contentPane.add(silaba);
 			posicaoY += 35;
 		}
@@ -492,45 +457,45 @@ public class InserirPalavra extends JFrame {
 		repaint();
 	}
 	
-	/*!< Método responsável por verificar se todas as silabas EXTRAS são válidas */ 
+	/*!< Mï¿½todo responsï¿½vel por verificar se todas as silabas EXTRAS sï¿½o vï¿½lidas */ 
 	private boolean silabasExtrasSaoValidas() {
-		/*!< Verificando se há sílabas extras */
+		/*!< Verificando se hï¿½ sï¿½labas extras */
 		if(this.quantidadeDeSilabasExtras < 1) {
-			JOptionPane.showMessageDialog(null, "É necessário pelo menos uma sílaba extra.", "", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "E necessario pelo menos uma silaba extra.", "", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		
 		/**
-		 * O nível 1 deve possuir 6 sílabas.
-		 * O nível 2 deve possuir 6 sílabas.
-		 * O nível 3 deve possuir 8 sílabas.
+		 * O nï¿½vel 1 deve possuir 6 sï¿½labas.
+		 * O nï¿½vel 2 deve possuir 6 sï¿½labas.
+		 * O nï¿½vel 3 deve possuir 8 sï¿½labas.
 		 **/
 		int quantidadeSilabaQueDeveTer = 6;
 		if(this.nivel == Niveis.NIVEL3)
 			quantidadeSilabaQueDeveTer = 8;
 		
-		/*!< Cada nível deve possuir um número certo de sílabas extras + sílabas de palavra */
+		/*!< Cada nï¿½vel deve possuir um nï¿½mero certo de sï¿½labas extras + sï¿½labas de palavra */
 		if(quantidadeDeSilabas + quantidadeDeSilabasExtras != quantidadeSilabaQueDeveTer) {
-			JOptionPane.showMessageDialog(null, "São necessárias " + quantidadeSilabaQueDeveTer + " sílabas ao total.", "", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Sao necessarias " + quantidadeSilabaQueDeveTer + " silabas ao total.", "", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 			
-		/*!< Verificando se alguma das sílabas é vazia */
+		/*!< Verificando se alguma das sï¿½labas ï¿½ vazia */
 		for(JTextField silaba : this.silabasExtras) {
 			String texto = silaba.getText();
 			if(texto.equals("")) {
-				JOptionPane.showMessageDialog(null, "Preencha todas as sílabas extras.", "", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Preencha todas as silabas extras.", "", JOptionPane.ERROR_MESSAGE);
 				return false;
 			}
 			
 			if(texto.length() >= 4) {
-				JOptionPane.showMessageDialog(null, "Sílaba inválida.", "", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Silaba invalida.", "", JOptionPane.ERROR_MESSAGE);
 				return false;
 			}
 			
-			/*!< Verificando se a String só possui letras */
+			/*!< Verificando se a String sï¿½ possui letras */
 			if(!texto.matches("[a-zA-Z]+")) {
-				JOptionPane.showMessageDialog(null, "A sílaba só pode conter letras.", "", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "A silaba so pode conter letras.", "", JOptionPane.ERROR_MESSAGE);
 				return false;
 			}
 		}
