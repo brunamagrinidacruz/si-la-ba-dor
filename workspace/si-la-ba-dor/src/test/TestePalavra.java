@@ -12,16 +12,16 @@ public class TestePalavra {
 
 	@Test
 	public void testGetPalavra() throws ArquivoException {
-		String s =  "ca-be-√ßa te cam al";
+		String s =  "ca-be-Áa te cam al";
 		Palavra nova = new Palavra(s.toCharArray(), 3);
-		assertEquals("cabe√ßa", nova.getPalavra());
+		assertEquals("cabeÁa", nova.getPalavra());
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetSilabas() throws ArquivoException {
-		String s =  "ca-be-√ßa te cam al";
-		String expected[] = {"ca", "be", "√ßa"};
+		String s =  "ca-be-Áa te cam al";
+		String expected[] = {"ca", "be", "Áa"};
 		Palavra nova = new Palavra(s.toCharArray(), 3);
 		assertEquals(expected, nova.getSilabasPalavra());
 	}
@@ -29,7 +29,7 @@ public class TestePalavra {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetSilabasAdicionais() throws ArquivoException {
-		String s =  "ca-be-√ßa te cam al";
+		String s =  "ca-be-Áa te cam al";
 		String expected[] = {"te", "cam", "al"};
 		Palavra nova = new Palavra(s.toCharArray(), 3);
 		assertEquals(expected, nova.getSilabasAdicionais());
@@ -39,7 +39,7 @@ public class TestePalavra {
 	public void testGetNumSilabas() throws ArquivoException
 	{
 
-		String s =  "ca-be-√ßa te cam al";
+		String s =  "ca-be-Áa te cam al";
 		Palavra nova = new Palavra(s.toCharArray(), 3);
 		assertEquals(3, nova.getNumSilabas());
 	}
@@ -48,7 +48,7 @@ public class TestePalavra {
 	public void testGetNumLetras() throws ArquivoException
 	{
 
-		String s =  "ca-be-√ßa te cam al";
+		String s =  "ca-be-Áa te cam al";
 		Palavra nova = new Palavra(s.toCharArray(), 3);
 		assertEquals(6, nova.getNumLetras());
 	}
@@ -56,7 +56,7 @@ public class TestePalavra {
 	@Test
 	public void testGetNumTotalSilabas() throws ArquivoException
 	{
-		String s = "ca-be-√ßa te cam al";
+		String s = "ca-be-Áa te cam al";
 		Palavra nova = new Palavra(s.toCharArray(), 3);
 		assertEquals(6, nova.getNumTotalSilabas());
 	}
@@ -70,10 +70,10 @@ public class TestePalavra {
 		 *  ser√° marcado como certo.
 		 */
 		
-		String s = "ca-be-√ßa te cam al";
+		String s = "ca-be-Áa te cam al";
 		Palavra nova = new Palavra(s.toCharArray(), 3);
 		String[] silabas = nova.getSilabasCompleto();
-		String[] silabasEsperadas = {"ca", "be", "√ßa", "te", "cam", "al"};
+		String[] silabasEsperadas = {"ca", "be", "Áa", "te", "cam", "al"};
 		boolean test = false;
 		
 		for(int i = 0; i < nova.getNumTotalSilabas(); i++)
@@ -96,8 +96,8 @@ public class TestePalavra {
 	public void testToSting() throws ArquivoException
 	{
 
-		String s =  "ca-be-√ßa te cam al";
-		String expected = "NumSilabas: 3\nNumTotalSilabas: 6\nNumLetras: 6\nPalavra: cabe√ßa\nSilabas Extras: te cam al ";
+		String s =  "ca-be-Áa te cam al";
+		String expected = "NumSilabas: 3\nNumTotalSilabas: 6\nNumLetras: 6\nPalavra: cabeÁa\nSilabas Extras: te cam al ";
 		Palavra nova = new Palavra(s.toCharArray(), 3);
 		assertEquals(expected, nova.toString());
 	}
@@ -143,12 +143,12 @@ public class TestePalavra {
 	@Test(expected=ArquivoException.class)
 	public void test07() throws ArquivoException
 	{
-		new Palavra("pa-lha-√ßo lia so co".toCharArray(), 2);
+		new Palavra("pa-lha-Áo lia so co".toCharArray(), 2);
 	}
 	
 	@Test(expected=ArquivoException.class)
 	public void test08() throws ArquivoException
 	{
-		new Palavra("pa-lha-√ßo lia so co pra".toCharArray(), 3);
+		new Palavra("pa-lha-Áo lia so co pra".toCharArray(), 3);
 	}
 }

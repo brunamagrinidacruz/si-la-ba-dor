@@ -79,7 +79,7 @@ public class Gerenciamento extends JFrame {
 	}
 	
 	/**
-	 * Retorna o usuário para a tela de menu
+	 * Retorna o usuario para a tela de menu
 	 * */
 	private void voltarParaMenu() {
 		menu.setVisible(true);

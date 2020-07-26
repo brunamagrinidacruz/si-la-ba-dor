@@ -122,7 +122,7 @@ public class Menu extends JFrame {
 					e.printStackTrace();
 				}
 
-				/*!< Se o usuÃ¡rio for administrador, a tela de gerenciamento deve ser aberta. Se nÃ£o, a tela de jogo. */
+				/*!< Se o usuário for administrador, a tela de gerenciamento deve ser aberta. Se não, a tela de jogo. */
 				if(administrador) {
 					usuario = new Administrador(txtName.getText());
 					Gerenciamento gerenciamento = new Gerenciamento(menu, usuario);
@@ -130,7 +130,7 @@ public class Menu extends JFrame {
 					gerenciamento.setVisible(true);
 				} else {
 					usuario = new Jogador(txtName.getText());
-					/*!< Inicializando a variavel de nivel como nivel 1 e caso seja diferente conforme o comboBox, o valor Ã© alterado */
+					/*!< Inicializando a variavel de nivel como nivel 1 e caso seja diferente conforme o comboBox, o valor é alterado */
 					Niveis nivel = Niveis.NIVEL1;
 					switch(cbLevel.getSelectedIndex()) {
 						case 0:

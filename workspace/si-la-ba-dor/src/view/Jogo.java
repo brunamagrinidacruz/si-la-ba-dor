@@ -33,7 +33,7 @@ public class Jogo extends JFrame {
 	/*!< Objeto do menu do jogo */
 	private JFrame menu;
 
-	/*!< JLabel utilizado para informar situaÃ§Ã£o do usuÃ¡rio durante o jogo */
+	/*!< JLabel utilizado para informar situação do usuário durante o jogo */
 	private JLabel lblMensagem;
 	
 	private Jogador usuario;
@@ -42,7 +42,7 @@ public class Jogo extends JFrame {
 	
 	/*!< Representa as silabas na tela */
 	JLabel silabasNaTela[];
-	/*!< Representa o nÃºmero de silabas que a pessoa colocou na tela. Este valor nÃ£o pode ultrapassar o nÃºmero de silabas da palavra */
+	/*!< Representa o número de silabas que a pessoa colocou na tela. Este valor não pode ultrapassar o número de silabas da palavra */
 	private int numeroSilabasNaTela = 0; 
 	
 	private final int ESPACAMENTO = 180;
@@ -165,7 +165,7 @@ public class Jogo extends JFrame {
 	
 	
 	/**
-	 * Retorna o usuÃ¡rio para a tela de menu
+	 * Retorna o usuário para a tela de menu
 	 * */
 	private void voltarParaMenu() {
 		menu.setVisible(true);
@@ -173,14 +173,14 @@ public class Jogo extends JFrame {
 	}
 	
 	/**
-	 * Cria os botÃµes com as sÃ­labas e coloca na tela.
-	 * Cria os campos de preenchimento para o usuÃ¡rio colocar as sÃ­labas.
+	 * Cria os botões com as sílabas e coloca na tela.
+	 * Cria os campos de preenchimento para o usuário colocar as sílabas.
 	 * */
 	private void inicializarSilabas() {
-		/*!< Inicializando o vetor que irÃ¡ armazenar as silabas que estÃ£o na tela com o tamanho da silaba correta */
+		/*!< Inicializando o vetor que irá armazenar as silabas que estão na tela com o tamanho da silaba correta */
 		silabasNaTela = new JLabel[palavra.getNumSilabas()];
 		
-		/*!< Criando os botÃµes de sÃ­labas */
+		/*!< Criando os botões de sílabas */
 		for(int i = 0; i < palavra.getNumTotalSilabas(); i++) {
 			JButton btnSilaba = new JButton(palavra.getSilabasCompleto()[i]);
 			
@@ -215,20 +215,20 @@ public class Jogo extends JFrame {
 						adicionarSilaba(btnSilaba.getText());
 						colocarSilabasNaTela();
 					} else {
-						System.out.println("VocÃª atingiu o nÃºmero mÃ¡ximo de sÃ­labas.");
+						System.out.println("Você atingiu o número máximo de sílabas.");
 					}
 					
-					/*!< O usuÃ¡rio colocou o nÃºmero mÃ¡ximo de sÃ­labas entÃ£o deve ser validado se a palavra estÃ¡ correta*/
+					/*!< O usuário colocou o número máximo de sílabas então deve ser validado se a palavra está correta*/
 					if(numeroSilabasNaTela == palavra.getNumSilabas()) {
 						for(int i = 0; i < palavra.getNumSilabas(); i++) {
 							if(!palavra.getSilabasPalavra()[i].equals(silabasNaTela[i].getText())) {
-								lblMensagem.setText("VocÃª nÃ£o acertou a palavra. Tente limpar as sÃ­labas e tentar novamente");
+								lblMensagem.setText("Você não acertou a palavra. Tente limpar as sílabas e tentar novamente");
 								repaint();
 								return;
 							}
 						}
 						
-						int input = JOptionPane.showConfirmDialog(null, "VocÃª acertou a palavra!\nDeseja jogar novamente?", "ParabÃ©ns!", JOptionPane.YES_NO_OPTION);
+						int input = JOptionPane.showConfirmDialog(null, "Você acertou a palavra!\nDeseja jogar novamente?", "Parabéns!", JOptionPane.YES_NO_OPTION);
 						usuario.setPontuacao(usuario.getPontuacao() + nivel.getNivel());
 						if(input == 0) {/*!< Sim. Iniciar nova partida */
 							/*!< A nova partida serÃ¡ no prÃ³ximo nÃ­vel caso o nÃ­vel atual nÃ£o for o 3Âº. Se for o 3Âº, a pessoa continuarÃ¡ nele */
@@ -275,7 +275,7 @@ public class Jogo extends JFrame {
 	}
 	
 	/**
-	 * Adiciona uma silaba selecionada pelo botÃ£o na tela.
+	 * Adiciona uma silaba selecionada pelo botão na tela.
 	 * Armazena e contabiliza as silabas adiciondas na tela. 
 	 **/
 	private void adicionarSilaba(String silaba) {

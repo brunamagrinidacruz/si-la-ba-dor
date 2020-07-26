@@ -10,11 +10,11 @@ import exception.ArquivoException;
 
 public class ManipulaSilabas {
 		
-	static int indices[];   // Armazena os Ã­ndices de busca, referente a cada nÃºmero de sÃ­labas.
-	static int numPalavras; // Armazena o nÃºmero de palavras salvas no arquivo.
+	static int indices[];   // Armazena os índices de busca, referente a cada número de sílabas.
+	static int numPalavras; // Armazena o numero de palavras salvas no arquivo.
 	static Niveis dificuldade;
 	static String nomeArquivo;
-	// Fila para armazenar as Ãºltimas quatro palavras escolhidas, utilizada para impedir repetiÃ§Ãµes.
+	// Fila para armazenar as últimas quatro palavras escolhidas, utilizada para impedir repetições.
 	private Queue<Integer> cache = new LinkedList<Integer>(); 
 	private int tamanhoCabecalho;
 	private Random r;
@@ -28,9 +28,9 @@ public class ManipulaSilabas {
 		r = new Random();
 		
 		/*
-		 * 		A condicional abaixo verificÃ¡ qual nÃ­vel foi escolhido para selecionar o arquivo selecionado
-		 * 	e instanciar o vetor "indices", visto que, como cada nÃ­vel possui um valor diferente de nÃºmeros de
-		 *  sÃ­labas selecionados, seu tamanho serÃ¡ diferente para cada arquivo.
+		 * 		A condicional abaixo verifica qual nível foi escolhido para selecionar o arquivo selecionado
+		 * 	e instanciar o vetor "indices", visto que, como cada nível possui um valor diferente de números de
+		 *  sílabas selecionados, seu tamanho será diferente para cada arquivo.
 		 */
 		switch(nivel) 
 		{
@@ -57,7 +57,7 @@ public class ManipulaSilabas {
 		
 		try(FileReader fr = new FileReader(dados);
 			BufferedReader br = new BufferedReader(fr)){
-			// LÃª e armazena o cabeÃ§alho do arquivo.
+			// Lê e armazena o cabeçalho do arquivo.
 			numPalavras = Integer.parseInt(br.readLine());
 			
 			int tamanho = indices.length;
@@ -73,7 +73,7 @@ public class ManipulaSilabas {
 	private void atualizaCache(int linha)
 	{
 		/*
-		 * MÃ©todo para inserir e remover na fila, mantendo sempre quatro ou menos elementos.
+		 * Método para inserir e remover na fila, mantendo sempre quatro ou menos elementos.
 		 */
 		if(cache.size() == 4)
 		{
@@ -86,28 +86,28 @@ public class ManipulaSilabas {
 	public Palavra recebePalavra()
 	{
 		/*
-		 * 		MÃ©todo que seleciona um nÃºmero aleatÃ³rio de silabas com base no nÃ­vel e 
-		 *  percorre o arquivo, e escolhe uma palavra aleatÃ³ria com a quantidade de sÃ­labas.
+		 * 		Método que seleciona um número aleatório de silabas com base no nível e 
+		 *  percorre o arquivo, e escolhe uma palavra aleatória com a quantidade de sílabas.
 		 */
 		
 		int silabas = 0;
-		int numSilabas = 0; // Armazena o nÃºmero de sÃ­labas da palavra.
-		int contador = 0;   // Contador, que ao atingir um determinado valor, interrompe a excecuÃ§Ã£o do algoritmo do cache pois caso, num arquivo, um determinado nÃºmero de sÃ­labas seja menor que o tamanho do cache, o programa entrarÃ¡ em loop infinito.
+		int numSilabas = 0; // Armazena o número de sílabas da palavra.
+		int contador = 0;   // Contador, que ao atingir um determinado valor, interrompe a excecução do algoritmo do cache pois caso, num arquivo, um determinado número de sílabas seja menor que o tamanho do cache, o programa entrará em loop infinito.
 		
 		switch(dificuldade) 
 		{
 			case NIVEL1:
-				/*!< getIndRand irÃ¡ retornar valores entre [0, 1] entÃ£o ao somar 2, os valores irÃ£o variar entre [2, 3] */
+				/*!< getIndRand irá retornar valores entre [0, 1] então ao somar 2, os valores irão variar entre [2, 3] */
 				silabas = r.getIntRand(2);
 				numSilabas = silabas + 2;
 				break;
 			case NIVEL2:
-				/*!< getIndRand irÃ¡ retornar valores entre [0, 2] entÃ£o ao somar 2, os valores irÃ£o variar entre [2, 4] */
+				/*!< getIndRand irá retornar valores entre [0, 2] então ao somar 2, os valores irão variar entre [2, 4] */
 				silabas = r.getIntRand(3);
 				numSilabas = silabas + 2;
 				break;
 			case NIVEL3:
-				/*!< getIndRand irÃ¡ retornar valores entre [0, 2] entÃ£o ao somar 5, os valores irÃ£o variar entre [5, 7] */
+				/*!< getIndRand irá retornar valores entre [0, 2] então ao somar 5, os valores irão variar entre [5, 7] */
 				silabas = r.getIntRand(3);
 				numSilabas = silabas + 5;
 				break;
@@ -120,24 +120,24 @@ public class ManipulaSilabas {
 		
 		Palavra nova = null;     // Contem o objeto "palavra" a ser retornado.
 		File dados = new File(nomeArquivo);
-		int palavraEscolhida; 	 // VariÃ¡vel que armazenarÃ¡ quantas linhas deverÃ£o ser puladas para chegar a palavra escolhida aleatoriamente.
+		int palavraEscolhida; 	 // Variável que armazenará quantas linhas deverão ser puladas para chegar a palavra escolhida aleatoriamente.
 
 		if(numSilabas < 2 || numSilabas > 7) return null;
 		
 		try(FileReader fr = new FileReader(dados);
 			BufferedReader br = new BufferedReader(fr)){
 			
-			// Pula o cabeÃ§alho:
+			// Pula o cabeçalho:
 			for(int i = 0; i < tamanhoCabecalho; i++)
 				br.readLine();
-			// Agora devemos, ou nÃ£o, pular as linhas no arquivo para chegar no numero de silabas solicitado.
+			// Agora devemos, ou não, pular as linhas no arquivo para chegar no numero de silabas solicitado.
 			for(int i = 0; i < indices[silabas]; i++)
 				br.readLine();
-			// Atribui, a variÃ¡vel palavraEscolhida, o nÃºmero de palavras com a quantidade e sÃ­labas escolhida
+			// Atribui, a variável palavraEscolhida, o número de palavras com a quantidade e sílabas escolhida
 			if(silabas == indices.length - 1) palavraEscolhida = (numPalavras -indices[silabas]);
 			else palavraEscolhida = (indices[silabas+1] - indices[silabas]);
 			
-			// Define, aleatoriamente, quantas linhas deverÃ£o ser puladas para escolher uma palavra.
+			// Define, aleatoriamente, quantas linhas deverão ser puladas para escolher uma palavra.
 			do {
 				palavraEscolhida = r.getIntRand(palavraEscolhida);
 				contador++;
@@ -167,37 +167,37 @@ public class ManipulaSilabas {
 	public boolean inserePalavra(String[] silabas, String[] extras) throws ArquivoException
 	{
 		/*
-		 *  	MÃ©todo para inserir uma palavra num arquivo, nota-se que a inserÃ§Ã£o serÃ¡ feita no
-		 *  arquivo que foi escolhido na instanciaÃ§Ã£o da classe e estÃ¡ armazenado no atributo "dificuldade".
-		 *  	Como queremos manter a ordenaÃ§Ã£o de sÃ­labas, e para evitar sobrescriÃ§Ã£o de dados, a inserÃ§Ã£o
-		 *  serÃ¡ implementada de forma que, serÃ¡ copiado um arquivo temporÃ¡rio "tmp.txt", no qual copiaremos o
-		 *  arquivo original. Caso a inserÃ§Ã£o seja realizada corretamente, o arquivo original serÃ¡ apagado e
-		 *  o arquivo temporÃ¡rio serÃ¡ renomeado para ser usado como o original. Caso a palavra a ser inserida
-		 *  seja encontrada durante a inserÃ§Ã£o, apagaremos o arquivo temporÃ¡rio e o arquivo original estarÃ¡
-		 *  sem modificaÃ§Ãµes.
+		 *  	MÃétodo para inserir uma palavra num arquivo, nota-se que a inserção será feita no
+		 *  arquivo que foi escolhido na instanciação da classe e está armazenado no atributo "dificuldade".
+		 *  	Como queremos manter a ordenação de sílabas, e para evitar sobrescrição de dados, a inserção
+		 *  será implementada de forma que, será copiado um arquivo temporário "tmp.txt", no qual copiaremos o
+		 *  arquivo original. Caso a inserção seja realizada corretamente, o arquivo original será apagado e
+		 *  o arquivo temporário será renomeado para ser usado como o original. Caso a palavra a ser inserida
+		 *  seja encontrada durante a inserção, apagaremos o arquivo temporário e o arquivo original estará
+		 *  sem modificações.
 		 *  
-		 *  	OBS: O arquivo Ã© percorrido previamente para impedir a inserÃ§Ã£o de uma palavra repetida.
+		 *  	OBS: O arquivo é percorrido previamente para impedir a inserção de uma palavra repetida.
 		 *  
-		 *  String[] silabas - Vetor que contÃ©m as sÃ­labas constituintes da palavra a ser inserida.
-		 *  String[] extras  - Vetor que contÃ©m as sÃ­labas a serem embaralhadas juntos com a nova palavra.
+		 *  String[] silabas - Vetor que contém as sílabas constituintes da palavra a ser inserida.
+		 *  String[] extras  - Vetor que contém as sílabas a serem embaralhadas juntos com a nova palavra.
 		 */
 		
 		File dados = new File(nomeArquivo);
 		File novo  = new File("tmp.txt");
-		int numSilabasPalavra;	// Armazena o nÃºmero de sÃ­labas da palavra a ser inserida e, posteriormente, assume uma posiÃ§Ã£o referente ao vetor "indices".
-		int numPalavras;		// Armazena o nÃºmero total de palavras no arquivo.
-		int aux; 				// VariÃ¡vel auxiliar para armazenar algum valor a ser alterado e reinserido no arquivo.
-		int numLinhasPuladas;   // Armazena o nÃºmero de linhas a serem puladas atÃ© alcanÃ§ar a posiÃ§Ã£o em que a palavra deve ser inserida.
+		int numSilabasPalavra;	// Armazena o número de sílabas da palavra a ser inserida e, posteriormente, assume uma posição referente ao vetor "indices".
+		int numPalavras;		// Armazena o número total de palavras no arquivo.
+		int aux; 				// Variável auxiliar para armazenar algum valor a ser alterado e reinserido no arquivo.
+		int numLinhasPuladas;   // Armazena o número de linhas a serem puladas até alcançar a posição em que a palavra deve ser inserida.
 		char linha[];		    // Conjunto de caracteres que armazena uma linha do arquivo original.
-		int inicioSilaba; 	    // VariÃ¡vel que armazena a posiÃ§Ã£o da primeira letra de uma determinada sÃ­laba no vetor "linhas".
+		int inicioSilaba; 	    // Varipavel que armazena a posição da primeira letra de uma determinada sílaba no vetor "linhas".
 		int contador;	  	    // Contador utilizado para percorrer o vetor "linhas".
-		boolean silabasIguais;  // VariÃ¡vel booleana que ajuda a verificar se a palavra a ser inserida e uma dada palavra do arquivo original sÃ£o iguais.
-		int numTotalSilabas = 0;// VariÃ¡vel que armazena o nÃºmero total de sÃ­labas (constituintes e extras), devem ter sido fornecidas.
+		boolean silabasIguais;  // Variável booleana que ajuda a verificar se a palavra a ser inserida e uma dada palavra do arquivo original são iguais.
+		int numTotalSilabas = 0;// Variável que armazena o número total de sílabas (constituintes e extras), devem ter sido fornecidas.
 		int posicaoIndice = 0;
 		String silabaLida;
 		numSilabasPalavra = silabas.length;
 		
-		/*!< Verifica se os parÃ¢metros foram passados corretamente.*/
+		/*!< Verifica se os parâmetros foram passados corretamente.*/
 		switch(dificuldade)
 		{
 			case NIVEL1:
@@ -219,13 +219,13 @@ public class ManipulaSilabas {
 				posicaoIndice = numSilabasPalavra - 5;
 				break;	
 		}
-		/*!<Agora deve-se garantir que a palavra ainda nÃ£o foi inserida no arquivo.*/
+		/*!<Agora deve-se garantir que a palavra ainda não foi inserida no arquivo.*/
 		try(FileReader fr = new FileReader(dados);
 				FileWriter fw = new FileWriter(novo);
 				BufferedReader br = new BufferedReader(fr);
 				BufferedWriter bw = new BufferedWriter(fw)) {
 			
-			/*!<Atualiza o cabeÃ§alho do arquivo.*/
+			/*!<Atualiza o cabeçalho do arquivo.*/
 			numPalavras = Integer.parseInt(br.readLine());
 			numPalavras++;bw.write(String.valueOf(numPalavras));
 			bw.newLine();
@@ -238,7 +238,7 @@ public class ManipulaSilabas {
 				indices[i] = aux;
 				bw.write(String.valueOf(aux)); bw.newLine();
 			}
-			/*!< Pula o nÃºmero de linhas definidas.*/
+			/*!< Pula o número de linhas definidas.*/
 			numLinhasPuladas = indices[posicaoIndice];
 			for(int i = 0; i < numLinhasPuladas; i++)
 			{
@@ -251,13 +251,13 @@ public class ManipulaSilabas {
 			else
 				numLinhasPuladas = indices[posicaoIndice + 1] - 1 - indices[posicaoIndice];
 
-			/*!<Realiza uma busca nas palavras com o mesmo nÃºmero de sÃ­labas que a palavra a ser inserida, caso esta palavra seja encontrada, a inserÃ§Ã£o Ã© interrompida.*/
+			/*!<Realiza uma busca nas palavras com o mesmo número de sílabas que a palavra a ser inserida, caso esta palavra seja encontrada, a inserção é interrompida.*/
 			for(int i = 0; i < numLinhasPuladas; i++)
 			{
 				linha = br.readLine().toCharArray();
 				contador = 0;
 				silabasIguais = true;
-				/*!< LÃª uma linha no arquivo, e converte uma String para um vetor de Strings, que possuem as sÃ­labas da palavra lida, e a compara com as sÃ­labas da palavra a ser inserida*/
+				/*!< Lê uma linha no arquivo, e converte uma String para um vetor de Strings, que possuem as sílabas da palavra lida, e a compara com as sílabas da palavra a ser inserida*/
 				for(int j = 0; j < numSilabasPalavra; j++)
 				{
 					inicioSilaba = contador;
@@ -271,7 +271,7 @@ public class ManipulaSilabas {
 						break;
 					}
 				}
-				/*!<Verifica se as palavras sÃ£o iguais*/
+				/*!<Verifica se as palavras são iguais*/
 				if(silabasIguais)
 				{
 					br.close();
@@ -290,7 +290,7 @@ public class ManipulaSilabas {
 			bw.write(extras[numTotalSilabas - numSilabasPalavra - 1]);
 			bw.newLine();
 			
-			/*< Insere as palavras apos a prÃ³xima palavra.*/
+			/*< Insere as palavras apos a próxima palavra.*/
 			numLinhasPuladas = numPalavras;
 			if(posicaoIndice == indices.length - 1)
 				numLinhasPuladas = 0;
@@ -313,7 +313,7 @@ public class ManipulaSilabas {
 		return true;
 	}
 	
-	// Utilizar a main para realizar testes na inserÃ§Ã£o.
+	// Utilizar a main para realizar testes na insercao.
 	/*public static void main(String[] args) throws ArquivoException
 	{
 		String palavra[] = {"di", "ver", "gên", "ci", "a"};

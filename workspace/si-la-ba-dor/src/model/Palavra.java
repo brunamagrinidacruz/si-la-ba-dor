@@ -5,33 +5,33 @@ import exception.ArquivoException;
 public class Palavra {
 	
 	/*
-	 * 	Objeto que servir√° para armazenar, em RAM, e manipular a palavra escolhida.
+	 * 	Objeto que servir· para armazenar, em RAM, e manipular a palavra escolhida.
 	 */
 	
-	String   silabasConcatenadas; // Armazena as silabas da palavra concatenadas, ou seja, a palavra.
-	String[] silabasPalavra;    // Armazenar√°, em ordem, as silabas que constituem as palavras.
-	String[] silabasAdicionais; // Armazenar√° as s√≠labas que n√£o far√£o parte da palara.
-	String[] silabasCompleto; //Armazena todas as silabas em ordem aleat√≥ria.
-	int numSilabas;   		    // Armazenar√° o n√∫mero de s√≠labas.
-	int numTotalSilabas;   		// Armazenar√° o n√∫mero de total de s√≠labas contando com as silabas adicionais.
-	int numLetras;				// Armazena o n√∫mero de letras na Palavra.
+	String   silabasConcatenadas; 	// Armazena as sÌlabas da palavra concatenadas, ou seja, a palavra.
+	String[] silabasPalavra;    	// Armazenar·, em ordem, as silabas que constituem as palavras.
+	String[] silabasAdicionais;		// Armazenar· as sÌlabas que n„o far„o parte da palara.
+	String[] silabasCompleto; 		//Armazena todas as silabas em ordem aleatÛria.
+	int numSilabas;   		    	// Armazenar· o n˙mero de sÌlabas.
+	int numTotalSilabas;   			// Armazenar· o n˙mero de total de sÌlabas contando com as silabas adicionais.
+	int numLetras;					// Armazena o n˙mero de letras na Palavra.
 	
 	public Palavra (char[] linha, int silabas)	throws ArquivoException
 	{
 		/*
-		 *   	M√©todo para inicializar o objeto, o vetor "linha" corresponde a uma linha do arquivo.
+		 *   	MÈtodo para inicializar o objeto, o vetor "linha" corresponde a uma linha do arquivo.
 		 */
 		
-		// O trecho abaio tratar√° as exce√ß√µes mais simples dos par√¢metros deste m√©todo.
+		// O trecho abaio tratar· as exceÁıes mais simples dos par‚metros deste mÈtodo.
 		if(linha == null)
-			throw new ArquivoException("Foi passado um valor nulo como par√¢metro da fun√ß√£o.");
-		// Trata o caso em que a linha fornecida √© inv√°lida.
+			throw new ArquivoException("Foi passado um valor nulo como parametro da funÁ„o.");
+		// Trata o caso em que a linha fornecida È inv·lida.
 		if(linha.length <= 2 || linha[0] == '.')
-			throw new ArquivoException("A linha a seguir no arquivo √© vazia, ou inv√°lida.\n Linha: " + String.valueOf(linha));
+			throw new ArquivoException("A linha a seguir no arquivo È vazia, ou inv·lida.\n Linha: " + String.valueOf(linha));
 		if(silabas <= 1 || silabas > 7)
-			throw new ArquivoException("O n√∫mero de s√≠labas fornecido √© inv√°lido, esta classe s√≥ trata palavras de 2 a 7 s√≠labas, valor passado: " + silabas);
+			throw new ArquivoException("O n˙mero de sÌlabas fornecido È inv·lido, esta classe sÛ trata palavras de 2 a 7 sÌlabas, valor passado: " + silabas);
 		
-		// Vari√°vel que armazena a soma do numero de s√≠labas, constituintes ou n√£o, da palavra.
+		// Vari·vel que armazena a soma do n˙mero de sÌlabas, constituintes ou n„o, da palavra.
 		if(silabas >= 5) numTotalSilabas = 8;
 		else numTotalSilabas = 6;
 
@@ -41,20 +41,20 @@ public class Palavra {
 		silabasAdicionais = new String[numTotalSilabas - numSilabas];
 
 		int contador = 0;
-		int inicioSilaba; // Servira para armazenar em qual √≠ndice da palvra a s√≠laba come√ßar√°
+		int inicioSilaba; // Servir· para armazenar em qual Ìndice da palvra a sÌlaba comeÁar·
 		
-		// O la√ßo abaixo percorerr√° o Vetor para armazenar as S√≠labas que constituem a palavra e concaten√°-las.
+		// O laÁo abaixo percorerr· o Vetor para armazenar as SÌlabas que constituem a palavra e concaten·-las.
 		for(int i = 0; i < numSilabas; i++)
 		{
 			inicioSilaba = contador;
 			while(linha[contador] != '-' && linha[contador] != ' ')				
 				contador++;
 			
-			// Trata os poss√≠veis casos em que o par√¢metro "silabas" foi passado incorretamente.
+			// Trata os possÌveis casos em que o par‚metro "sÌlabas" foi passado incorretamente.
 			if(i == numSilabas - 1 && linha[contador] == '-')
-				throw new ArquivoException("O n√∫mero de s√≠labas fornecido √© menor que o n√∫mero de s√≠labas da palavra lida no arquivo.\n Linha: " + String.valueOf(linha) + "\n NumSilabas fornecido: " + silabas);
+				throw new ArquivoException("O n˙mero de sÌlabas fornecido È menor que o n˙mero de sÌlabas da palavra lida no arquivo.\n Linha: " + String.valueOf(linha) + "\n NumSilabas fornecido: " + silabas);
 			if(i < numSilabas - 1 && linha[contador] == ' ')
-				throw new ArquivoException("O n√∫mero de s√≠labas fornecido √© maior que o n√∫mero de s√≠labas da palavra lida no arquivo.\n Linha: " + String.valueOf(linha) + "\n NumSilabas fornecido: " + silabas);
+				throw new ArquivoException("O n˙mero de sÌlabas fornecido È maior que o n˙mero de sÌlabas da palavra lida no arquivo.\n Linha: " + String.valueOf(linha) + "\n NumSilabas fornecido: " + silabas);
 			
 			silabasPalavra[i]    = new String(linha, inicioSilaba, contador - inicioSilaba);
 			silabasConcatenadas += silabasPalavra[i];
@@ -63,10 +63,10 @@ public class Palavra {
 
 		numLetras = silabasConcatenadas.length();
 					
-		// Vari√°vel utilizada para impedir overflow no vetor "linhas".
+		// Vari·vel utilizada para impedir overflow no vetor "linhas".
 		int tamanho = linha.length;
 
-		// O La√ßo abaixo √© an√°logo ao anterior, por√©m servir√° para armazenar as S√≠labas que n√£o constituem a palavra
+		// O LaÁo abaixo È an·logo ao anterior, porÈm servir· para armazenar as SÌlabas que n„o constituem a palavra
 		for(int i = 0; i < (numTotalSilabas-numSilabas); i++)
 		{
 			inicioSilaba = contador;
@@ -78,17 +78,17 @@ public class Palavra {
 			silabasAdicionais[i] = new String(linha, inicioSilaba, contador - inicioSilaba);
 			contador++;
 		}
-		// Caso em que n√£o foram lidos todos caracteres de "linha"
+		// Caso em que n„o foram lidos todos caracteres de "linha"
 		if(contador < linha.length - 1)
-			throw new ArquivoException("A linha a seguir n√£o respeita o padr√£o do arquivo: " + String.valueOf(linha));
+			throw new ArquivoException("A linha a seguir n„o respeita o padr„o do arquivo: " + String.valueOf(linha));
 		
 		silabasCompleto = new String[numTotalSilabas];
 		Random r = new Random();
 		
-		int indexSilabasPalavras = 0; /*!< Armazena qual √∫ltimo analisado da silabasPalavras */
-		int indexSilabasAdicionais = 0; /*!< Armazena qual √∫ltimo analisado da silabasAdicionais */
+		int indexSilabasPalavras = 0; /*!< Armazena qual ˙ltimo analisado da silabasPalavras */
+		int indexSilabasAdicionais = 0; /*!< Armazena qual ˙ltimo analisado da silabasAdicionais */
 		for(int i = 0; i < numTotalSilabas; i++) {
-			int randomNumber = r.getIntRand(2); /*!< Retornar√° valores 0 ou 1 */
+			int randomNumber = r.getIntRand(2); /*!< Retornar· valores 0 ou 1 */
 			
 			/*!< Se todas as silabas das silabasPalavras foram utilizadas, deve pegar apenas das silabasAdicionais */
 			if(indexSilabasPalavras == (silabasPalavra.length)) {
@@ -154,8 +154,8 @@ public class Palavra {
 	public String toString()
 	{
 		/*
-		 * 		√öTIL PARA DEBUG, por enquanto n√£o ter√° utilidade no trabalho.
-		 *  Antes desta chamada, deve-se garantir de que a Palavra n√£o √© nula.
+		 * 		⁄TIL PARA DEBUG, por enquanto n„o ter· utilidade no trabalho.
+		 *  Antes desta chamada, deve-se garantir de que a Palavra n„o È nula.
 		 */
 		
 		String retorno = "";

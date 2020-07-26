@@ -11,14 +11,14 @@ public class ManipulaAdministradores {
 	
 	public boolean verificarAdmistrador(String nome) throws OperacoesException {
 		try {
-			if (nome.equals("")) throw new OperacoesException("Nome nï¿½o preenchido.");
+			if (nome.equals("")) throw new OperacoesException("Nome não preenchido.");
 			
 			FileReader arq = new FileReader("administradores.txt");
 			BufferedReader lerArq = new BufferedReader(arq);
 			
-			dadoArq = lerArq.readLine(); // lï¿½ a primeira linha do arquivo para comeï¿½ar o loop
+			dadoArq = lerArq.readLine(); // lê a primeira linha do arquivo para comecar o loop
 			
-			while (dadoArq != null && !dadoArq.equals(nome)) // procura o nome no arquivo atï¿½ o final
+			while (dadoArq != null && !dadoArq.equals(nome)) // procura o nome no arquivo até o final
 				dadoArq = lerArq.readLine();
 			
 			arq.close();
